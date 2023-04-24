@@ -1,0 +1,12 @@
+parameters:
+    tables.footericons_table: '%core.table_prefix%footericons'
+services:
+    cabot.footericons.listener:
+        class: cabot\footericons\event\listener
+        arguments:
+        - '@config'
+        - '@template'
+        - '@dbal.conn'
+        - '%tables.footericons_table%'
+        tags:
+            - { name: event.listener }
