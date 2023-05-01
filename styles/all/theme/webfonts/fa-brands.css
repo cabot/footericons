@@ -47,10 +47,6 @@
 	content: "\f427";
 }
 
-.fa-yelp:before {
-	content: "\f1e9";
-}
-
 .fa-cc-visa:before {
 	content: "\f1f0";
 }
@@ -157,10 +153,6 @@
 
 .fa-centercode:before {
 	content: "\f380";
-}
-
-.fa-glide-g:before {
-	content: "\f2a6";
 }
 
 .fa-drupal:before {
@@ -299,16 +291,8 @@
 	content: "\f16c";
 }
 
-.fa-github-alt:before {
-	content: "\f113";
-}
-
 .fa-phoenix-squadron:before {
 	content: "\f511";
-}
-
-.fa-pagelines:before {
-	content: "\f18c";
 }
 
 .fa-algolia:before {
@@ -395,10 +379,6 @@
 	content: "\f214";
 }
 
-.fa-codepen:before {
-	content: "\f1cb";
-}
-
 .fa-git-alt:before {
 	content: "\f841";
 }
@@ -409,10 +389,6 @@
 
 .fa-rev:before {
 	content: "\f5b2";
-}
-
-.fa-windows:before {
-	content: "\f17a";
 }
 
 .fa-wizards-of-the-coast:before {
@@ -427,10 +403,6 @@
 	content: "\f2aa";
 }
 
-.fa-meetup:before {
-	content: "\f2e0";
-}
-
 .fa-centos:before {
 	content: "\f789";
 }
@@ -441,10 +413,6 @@
 
 .fa-cloudsmith:before {
 	content: "\f384";
-}
-
-.fa-pied-piper-alt:before {
-	content: "\f1a8";
 }
 
 .fa-square-dribbble:before {
@@ -496,10 +464,6 @@
 }
 
 .fa-square-twitter:before {
-	content: "\f081";
-}
-
-.fa-twitter-square:before {
 	content: "\f081";
 }
 
@@ -567,10 +531,6 @@
 	content: "\f3a1";
 }
 
-.fa-wikipedia-w:before {
-	content: "\f266";
-}
-
 .fa-wpressr:before {
 	content: "\f3e4";
 }
@@ -589,10 +549,6 @@
 
 .fa-nfc-directional:before {
 	content: "\e530";
-}
-
-.fa-skype:before {
-	content: "\f17e";
 }
 
 .fa-joget:before {
@@ -635,10 +591,6 @@
 	content: "\f452";
 }
 
-.fa-behance:before {
-	content: "\f1b4";
-}
-
 .fa-reddit:before {
 	content: "\f1a1";
 }
@@ -653,10 +605,6 @@
 
 .fa-app-store-ios:before {
 	content: "\f370";
-}
-
-.fa-cc-discover:before {
-	content: "\f1f2";
 }
 
 .fa-wpbeginner:before {
@@ -727,10 +675,6 @@
 	content: "\f184";
 }
 
-.fa-apple:before {
-	content: "\f179";
-}
-
 .fa-hive:before {
 	content: "\e07f";
 }
@@ -756,10 +700,6 @@
 }
 
 .fa-square-github:before {
-	content: "\f092";
-}
-
-.fa-github-square:before {
 	content: "\f092";
 }
 
@@ -835,10 +775,6 @@
 	content: "\f2ae";
 }
 
-.fa-wordpress:before {
-	content: "\f19a";
-}
-
 .fa-product-hunt:before {
 	content: "\f288";
 }
@@ -893,10 +829,6 @@
 
 .fa-squarespace:before {
 	content: "\f5be";
-}
-
-.fa-cc-stripe:before {
-	content: "\f1f5";
 }
 
 .fa-creative-commons-share:before {
@@ -1071,10 +1003,6 @@
 	content: "\f378";
 }
 
-.fa-facebook-f:before {
-	content: "\f39e";
-}
-
 .fa-square-google-plus:before {
 	content: "\f0d4";
 }
@@ -1093,10 +1021,6 @@
 
 .fa-osi:before {
 	content: "\f41a";
-}
-
-.fa-google-wallet:before {
-	content: "\f1ee";
 }
 
 .fa-d-and-d-beyond:before {
@@ -1195,10 +1119,6 @@
 	content: "\f409";
 }
 
-.fa-soundcloud:before {
-	content: "\f1be";
-}
-
 .fa-digg:before {
 	content: "\f1a6";
 }
@@ -1241,10 +1161,6 @@
 
 .fa-cotton-bureau:before {
 	content: "\f89e";
-}
-
-.fa-dashcube:before {
-	content: "\f210";
 }
 
 .fa-42-group:before {
@@ -1311,14 +1227,6 @@
 	content: "\f18b";
 }
 
-.fa-linux:before {
-	content: "\f17c";
-}
-
-.fa-glide:before {
-	content: "\f2a5";
-}
-
 .fa-linkedin:before {
 	content: "\f08c";
 }
@@ -1375,10 +1283,6 @@
 	content: "\f16b";
 }
 
-.fa-instagram:before {
-	content: "\f16d";
-}
-
 .fa-cmplid:before {
 	content: "\e360";
 }
@@ -1421,10 +1325,6 @@
 
 .fa-autoprefixer:before {
 	content: "\f41c";
-}
-
-.fa-whatsapp:before {
-	content: "\f232";
 }
 
 .fa-slideshare:before {
@@ -1615,10 +1515,6 @@
 	content: "\f3f9";
 }
 
-.fa-rebel:before {
-	content: "\f1d0";
-}
-
 .fa-css3:before {
 	content: "\f13c";
 }
@@ -1755,10 +1651,6 @@
 	content: "\f402";
 }
 
-.fa-github:before {
-	content: "\f09b";
-}
-
 .fa-php:before {
 	content: "\f457";
 }
@@ -1785,10 +1677,6 @@
 
 .fa-jenkins:before {
 	content: "\f3b6";
-}
-
-.fa-twitter:before {
-	content: "\f099";
 }
 
 .fa-rockrms:before {
@@ -1821,10 +1709,6 @@
 
 .fa-stumbleupon-circle:before {
 	content: "\f1a3";
-}
-
-.fa-internet-explorer:before {
-	content: "\f26b";
 }
 
 .fa-stubber:before {

@@ -8,7 +8,7 @@
 .fi-icons-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 6px;
+	gap: 2px;
 	justify-content: var(--fi-align);
 	list-style: none;
 }
@@ -28,6 +28,10 @@
 
 /* Preview each icon
 ---------------------------------------------------------------------------- */
+.fi-row {
+	position: relative;
+}
+
 .fi-row-legend {
 	font-size: 10px;
 	margin-top: 0;
@@ -81,7 +85,7 @@ input.spectrum {
 /*	Icon picker
 ---------------------------------------------------------------------------- */
 .fi-darkwrapper {
-	--main-color: rgb(20, 133, 189);
+	--fi-picker-color: rgb(20, 133, 189);
 	background: rgba(0, 0, 0, 0.35);
 	display: flex;
 	justify-content: center;
@@ -108,7 +112,7 @@ input.spectrum {
 }
 
 .fi-close {
-	background: var(--main-color);
+	background: var(--fi-picker-color);
 	border: 0;
 	box-shadow: 0 -4px 6px -6px rgb(0, 0, 0);
 	color: rgb(255, 255, 255);
@@ -174,8 +178,8 @@ input.spectrum {
 
 .fi-selected,
 .fi-selected:hover {
-	background: var(--main-color);
-	border-color: var(--main-color);
+	background: var(--fi-picker-color);
+	border-color: var(--fi-picker-color);
 	color: rgb(255, 255, 255);
 }
 
@@ -187,6 +191,66 @@ input.spectrum {
 
 .rtl .fi-input-preview {
 	margin: 0 5px 0 0;
+}
+
+/*	Delete button
+---------------------------------------------------------------------------- */
+.fi-delete-wrap {
+	display: flex;
+	justify-content: flex-end;
+	margin: -0.8em 0 0.4em;
+}
+
+.fi-delete-info {
+	color: #d90707;
+	display: none;
+	flex: 1;
+	font-weight: bold;
+	text-align: center;
+}
+
+.fi-delete-button {
+	background-color: #fff;
+	border: 1px solid var(--fi-delete-button-color);
+	border-radius: 6px;
+	color: var(--fi-delete-button-color);
+	display: none;
+	padding: 2px 6px;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+	cursor: pointer;
+	margin-left: 1em;
+}
+
+.fi-delete-button i {
+	margin-right: 2px;
+}
+
+.fi-delete-button:hover {
+	color: #fff;
+}
+
+.fi-delete {
+	--fi-delete-button-color: #d90707;
+}
+
+.fi-delete:hover {
+	background-color: var(--fi-delete-button-color);
+}
+
+.fi-restore {
+	--fi-delete-button-color: green;
+}
+
+.fi-restore:hover {
+	background-color: var(--fi-delete-button-color);
+}
+
+.fi-delete-button:focus {
+	outline: none;
+}
+
+.fi-delete-button:focus-visible {
+	outline: 2px solid;
 }
 
 /*	Back to top link

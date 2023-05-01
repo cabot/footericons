@@ -100,13 +100,24 @@
 				<span class="fi-row-name-preview">{% if icon.FI_NAME %}{{ icon.FI_NAME }}{% else %}{{ lang('ACP_FI_DEFAULT_TITLE') }}{% endif %}</span>
 				{% endapply %}
 			</legend>
+
+			{% if icon.FI_URL %}
+			<div class="fi-delete-wrap">
+				<span class="fi-delete-info">{{ lang('ACP_FI_DELETE_INFO') }}</span>
+				<button class="fi-delete-button fi-delete">
+					<i class="fa fa-trash-o" aria-hidden="true"></i>
+					<span class="fi-delete-text">{{ lang('ACP_FI_DELETE_YES') }}</span>
+				</button>
+			</div>
+			{% endif %}
+
 			<dl>
 				<dt>
 					<label for="fi-url_{{ loop.index }}">{{ lang('ACP_FI_URL') ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_URL_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<input id="fi-url_{{ loop.index }}" class="fi-url-input" name="fi_url[]" type="url" value="{{ icon.FI_URL }}" size="50">
+					<input id="fi-url_{{ loop.index }}" class="fi-url-input{% if icon.FI_URL %} is-validated{% endif %}" name="fi_url[]" type="url" value="{{ icon.FI_URL }}" size="50">
 				</dd>
 			</dl>
 			<dl>
@@ -138,7 +149,7 @@
 					</select>
 				</dd>
 			</dl>
-			<dl class="pouet">
+			<dl>
 				<dt>
 					<label for="fi-code_{{ loop.index }}">{{ lang('ACP_FI_CODE') ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_CODE_EXPLAIN') }}</span>
@@ -177,7 +188,7 @@
 					</select>
 				</dd>
 			</dl>
-			<dl class="is-togglable">
+			<dl class="is-togglable is-closed">
 				<dt>
 					<label for="fi-bgcolor_{{ loop.index }}">{{ lang('ACP_FI_BGCOLOR') ~ lang('COLON') }}</label><br>
 				</dt>
@@ -185,7 +196,7 @@
 					<input id="fi-bgcolor_{{ loop.index }}" class="fi-bgcolor fi-input-color" data-css-var="--fi-bgcolor" type="text" name="fi_bgcolor[]" value="{% if icon.FI_BGCOLOR %}{{ icon.FI_BGCOLOR }}{% else %}transparent{% endif %}">
 				</dd>
 			</dl>
-			<dl class="is-togglable">
+			<dl class="is-togglable is-closed">
 				<dt>
 					<label for="fi-bgcolor-hover_{{ loop.index }}">{{ lang('ACP_FI_BGCOLOR_HOVER') ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_BGCOLOR_HOVER_EXPLAIN') }}</span>
@@ -225,6 +236,8 @@
 <script>
 	const defaultLegendLang = "{{ lang('ACP_FI_DEFAULT_TITLE')|e ('js') }}",
 		closeIconsLang = "{{ lang('ACP_FI_ICON_CLOSE')|e ('js') }}",
-		searchIconLang = "{{ lang('ACP_FI_ICON_SEARCH')|e ('js') }}";
+		searchIconLang = "{{ lang('ACP_FI_ICON_SEARCH')|e ('js') }}",
+		deleteIconLang = "{{ lang('ACP_FI_DELETE_YES')|e ('js') }}",
+		restoreIconLang = "{{ lang('ACP_FI_DELETE_NO')|e ('js') }}";
 </script>
 {% INCLUDE 'overall_footer.html' %}

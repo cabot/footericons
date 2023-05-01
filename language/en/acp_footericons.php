@@ -55,6 +55,9 @@ $lang = array_merge($lang, [
 	'ACP_FI_DEFAULT_TITLE'					=> 'New icon',
 	'ACP_FI_DESC'							=> 'Icon description',
 	'ACP_FI_DESC_EXPLAIN'					=> 'Informative text displayed in a tooltip when hovering the icon (Optional).',
+	'ACP_FI_DELETE_INFO'					=> 'The icon will be removed when the form is validated.',
+	'ACP_FI_DELETE_NO'						=> 'Restore',
+	'ACP_FI_DELETE_YES'						=> 'Delete',
 	'ACP_FI_ENABLE'							=> 'Enable icon display',
 	'ACP_FI_INFO'							=> 'Informations',
 	'ACP_FI_ICON_CLOSE'						=> 'Close',
@@ -80,5 +83,5 @@ $lang = array_merge($lang, [
 	'ACP_FI_SIZE_EXPLAIN'					=> 'Enter the display size of the icon and the <a href="https://www.w3.org/Style/Examples/007/units.en.html" title="Learn more about units of measurements (opens in new tab)" target="_blank"> unit of measurement <i class="fa fa-external-link" aria-hidden="true"></i></a>.<br>Default: <b>2em</b>',
 	'ACP_FI_TOP'							=> 'Back to the top',
 	'ACP_FI_URL'							=> 'URL of the link associated to the icon',
-	'ACP_FI_URL_EXPLAIN'					=> 'Enter the full URL of the link (e.g. https://www.phpbb-fr.com)<br><strong>Leave this field blank to remove this icon from your list.</strong>',
+	'ACP_FI_URL_EXPLAIN'					=> 'Enter the full URL of the link (e.g. https://www.phpbb-fr.com)<br><strong>Leave this field blank and validate to remove the link.</strong>',
 ]);

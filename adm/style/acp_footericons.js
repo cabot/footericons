@@ -1,3 +1,4 @@
+// Spectrum color
 function spectrumize() {
 	$(".fi-input-color").spectrum({
 		type: "component",
@@ -16,20 +17,21 @@ function toggling(row) {
 		$istogglable = $hasToggler.siblings().filter(".is-togglable");
 
 	if ($optionSelected.val() == 0) {
-		$istogglable.hide();
+		$istogglable.hide().addClass("is-closed");
 	} else {
-		$istogglable.show();
+		$istogglable.show().removeClass("is-closed");
 	}
 
 	$select.on("change", function () {
 		if ($(this).val() == 0) {
-			$istogglable.slideUp(200);
+			$istogglable.slideUp(200).addClass("is-closed");
 		} else {
-			$istogglable.slideDown(200);
+			$istogglable.slideDown(200).removeClass("is-closed");
 		}
 	});
 }
 
+// Help user to configure icons
 function preview() {
 	let inputHeight = $(".fi-input-color").first().outerHeight();
 
@@ -42,6 +44,12 @@ function preview() {
 		let $iconRow = $(this),
 			fiBg = $(".has-fi-bg-select", $iconRow).find("option:selected").val(),
 			stackClass = "",
+			$fiUrl = $(".fi-url-input", $iconRow),
+			$required = $(".required", $iconRow),
+			$deleteButton = $(".fi-delete-button", $iconRow),
+			$deleteIcon = $("i", $deleteButton),
+			$deleteText = $(".fi-delete-text", $deleteButton),
+			$deleteInfo = $deleteButton.siblings(".fi-delete-info"),
 			$legendRow = $("legend", $iconRow);
 
 		if (fiBg == 0) {
@@ -50,23 +58,64 @@ function preview() {
 			stackClass = "fa-stack-1x";
 		}
 
-		$(".fi-url-input", $iconRow).each(function () {
+		// Icon link URL
+		$fiUrl.each(function () {
+			//if ($(this).val()) {
+			if ($(this).is(".is-validated")) {
+				$deleteButton.show();
+			}
+
 			$(this).on("change", function () {
-				let $required = $(".required", $iconRow);
+				$deleteButton.toggleClass("fi-restore fi-delete");
+				$deleteIcon.toggleClass("fa-rotate-left fa-trash-o");
 
 				if (!$(this).val()) {
+					$deleteText.html(restoreIconLang);
+					$deleteInfo.fadeIn();
 					$required.prop("required", false);
+					if ($(this).is(".is-validated")) {
+						$(this).closest("dl").nextAll().not(".is-closed").slideUp(200);
+					}
 				} else {
+					$deleteButton.show();
+					$deleteText.html(deleteIconLang);
+					$deleteInfo.fadeOut(200);
 					$required.prop("required", true);
+					if ($(this).is(".is-validated")) {
+						$(this).closest("dl").nextAll().not(".is-closed").slideDown(200);
+					}
 				}
 			});
 		});
 
+		// Delete button
+		$deleteButton.each(function () {
+			let tempVal = $fiUrl.val();
+
+			$(this).on("click", function (e) {
+				e.preventDefault();
+				$(this).toggleClass("fi-restore fi-delete");
+				$deleteIcon.toggleClass("fa-rotate-left fa-trash-o");
+
+				if ($(this).is(".fi-restore")) {
+					$fiUrl.val("");
+					$deleteText.html(restoreIconLang);
+					$deleteInfo.fadeIn();
+					$required.prop("required", false);
+					$(this).parent().nextAll().not(":first, .is-closed").slideUp(200);
+				} else {
+					$fiUrl.val(tempVal);
+					$deleteText.html(deleteIconLang);
+					$deleteInfo.fadeOut(200);
+					$required.prop("required", true);
+					$(this).parent().nextAll().not(":first, .is-closed").slideDown(200);
+				}
+			})
+		});
+
 		// Icon link name
 		$(".fi-name-input", $iconRow).each(function () {
-			let fiUrl = $(".fi-url-input", $iconRow);
-
-			if (!fiUrl.val()) {
+			if (!$fiUrl.val()) {
 				$(this).prop("required", false);
 			} else {
 				$(this).prop("required", true);
@@ -147,6 +196,15 @@ function preview() {
 				}
 			});
 		});
+
+	});
+
+	// Global reset
+	$('input[name="reset"]').on("click", function () {
+		$(".fi-delete-info").fadeOut(200);
+		$(".fi-delete-button").removeClass("fi-restore").addClass("fi-delete");
+		$(".fi-delete-text").html(deleteIconLang);
+		$("dl, .fi-top").not(".is-closed").slideDown(200);
 	});
 
 	(function ($) {
@@ -207,6 +265,7 @@ function preview() {
 	});
 }
 
+// Add new icon
 function new_clone() {
 	let $lastFieldset = $("#footericons_items").find("fieldset").last();
 

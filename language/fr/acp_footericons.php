@@ -55,6 +55,9 @@ $lang = array_merge($lang, [
 	'ACP_FI_DEFAULT_TITLE'					=> 'Nouvelle icône',
 	'ACP_FI_DESC'							=> 'Description de l’icône',
 	'ACP_FI_DESC_EXPLAIN'					=> 'Texte informatif affiché dans une infobulle lors du survol de l’icône (facultatif).',
+	'ACP_FI_DELETE_INFO'					=> 'L’icône sera supprimée lors de la validation du formulaire.',
+	'ACP_FI_DELETE_NO'						=> 'Restaurer',
+	'ACP_FI_DELETE_YES'						=> 'Supprimer',
 	'ACP_FI_ENABLE'							=> 'Activer l’affichage des icônes',
 	'ACP_FI_ICON_CLOSE'						=> 'Fermer',
 	'ACP_FI_ICON_SEARCH'					=> 'Rechercher (par ex. google)',
@@ -80,5 +83,5 @@ $lang = array_merge($lang, [
 	'ACP_FI_SIZE_EXPLAIN'					=> 'Saisissez la taille d’affichage de l’icône et l’<a href="https://www.w3.org/Style/Examples/007/units.fr.html" title="En savoir plus sur les unités de mesure (s’ouvre dans un nouvel onglet)" target="_blank">unité de mesure <i class="fa fa-external-link" aria-hidden="true"></i></a>.<br>Par défaut : <b>2em</b>',
 	'ACP_FI_TOP'							=> 'Retour en haut de page',
 	'ACP_FI_URL'							=> 'URL du lien associé à l’icône',
-	'ACP_FI_URL_EXPLAIN'					=> 'Saisissez l’URL complète du lien (par ex. https://www.phpbb-fr.com)<br><strong>Laissez le champ vide pour supprimer cette icône de votre liste.</strong>',
+	'ACP_FI_URL_EXPLAIN'					=> 'Saisissez l’URL complète du lien (par ex. https://www.phpbb-fr.com)<br><strong>Laissez le champ vide et validez pour supprimer l’icône.</strong>',
 ]);
