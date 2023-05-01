@@ -1,0 +1,51 @@
+.fi-icons-wrap {
+	display: flex;
+	flex-wrap: nowrap;
+	list-style: none;
+}
+
+.fi-icons-list {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 10px;
+	gap: 2px;
+	justify-content: var(--fi-align);
+	list-style: none;
+	margin: 0 0 5px;
+}
+
+.fi-copy-append {
+	margin: 0;
+}
+
+.fi-page-body-after {
+	margin: 5px 0 0;
+}
+
+.fi-link {
+	color: transparent;
+	font-size: var(--fi-size);
+}
+
+.fi-link:hover {
+	color: transparent;
+}
+
+.fi-icon-bg {
+	color: var(--fi-bgcolor);
+	transition: color 0.2s;
+}
+
+.fi-link:hover .fi-icon-bg {
+	color: var(--fi-bgcolor-hover);
+}
+
+.fi-icon {
+	color: var(--fi-color);
+	text-shadow: var(--fi-shadow-color);
+	transition: color 0.2s;
+}
+
+.fi-link:hover .fi-icon {
+	color: var(--fi-color-hover);
+}

@@ -1,0 +1,279 @@
+/* Main preview
+---------------------------------------------------------------------------- */
+.i-preview {
+	font-size: 1.3em;
+	cursor: help;
+}
+
+.fi-icons-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	justify-content: var(--fi-align);
+	list-style: none;
+}
+
+.fi-list-item {
+	font-size: 10px;
+}
+
+.fi-link {
+	color: transparent;
+	font-size: var(--fi-size);
+}
+
+.fi-link:hover .fi-icon-bg {
+	color: var(--fi-bgcolor-hover);
+}
+
+/* Preview each icon
+---------------------------------------------------------------------------- */
+.fi-row {
+	position: relative;
+}
+
+.fi-row-legend {
+	font-size: 10px;
+	margin-top: 0;
+}
+
+.fi-stack {
+	font-size: var(--fi-size);
+}
+
+.fi-icon-bg {
+	color: var(--fi-bgcolor);
+	transition: color 0.2s;
+}
+
+.fi-row-legend:hover .fi-icon-bg {
+	color: var(--fi-bgcolor-hover);
+}
+
+.fi-icon {
+	color: var(--fi-color);
+	text-shadow: 1px 1px var(--fi-shadow-color);
+	transition: color 0.2s;
+}
+
+.fi-row-legend:hover .fi-icon {
+	color: var(--fi-color-hover);
+}
+
+.fi-row-name-preview {
+	font-size: 12px;
+	margin-left: 1em;
+}
+
+/*	Spectrum color tweak
+---------------------------------------------------------------------------- */
+.sp-original-input-container {
+	border-left: 1px solid rgb(175, 174, 170);
+	border-top: 1px solid rgb(175, 174, 170);
+	border-right: 1px solid rgb(213, 213, 200);
+	border-bottom: 1px solid rgb(213, 213, 200);
+}
+
+.sp-original-input-container:hover {
+	border-color: rgb(175, 174, 170);
+}
+
+input.spectrum {
+	border: none;
+}
+
+/*	Icon picker
+---------------------------------------------------------------------------- */
+.fi-darkwrapper {
+	--fi-picker-color: rgb(20, 133, 189);
+	background: rgba(0, 0, 0, 0.35);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+}
+
+.fi-wrapper {
+	background: rgb(239, 239, 239);
+	border-radius: 7px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	width: 260px;
+}
+
+.fi-picker {
+	padding: 8px;
+}
+
+.fi-close {
+	background: var(--fi-picker-color);
+	border: 0;
+	box-shadow: 0 -4px 6px -6px rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	font-size: 14px;
+	padding: 10px;
+	text-transform: uppercase;
+	transition: background 0.15s;
+}
+
+.fi-close:hover {
+	background: rgb(14, 106, 152)
+}
+
+.fi-item .fa {
+	font-size: 28px;
+}
+
+.fi-item {
+	background: rgb(252, 252, 252);
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 28px;
+	padding: 6px;
+	width: 28px;
+	height: 28px;
+	margin: 0;
+	transition: background 0.15s;
+}
+
+.fi-item:hover {
+	background: rgb(239, 239, 239);
+	cursor: pointer
+}
+
+.fi-item:active {
+	background: rgb(233, 233, 226)
+}
+
+.fi-search {
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 3px;
+	box-sizing: border-box;
+	margin-bottom: 8px;
+	padding: 10px;
+	width: 100%;
+}
+
+.fi-list {
+	height: 300px;
+	overflow-y: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+}
+
+.fi-selected,
+.fi-selected:hover {
+	background: var(--fi-picker-color);
+	border-color: var(--fi-picker-color);
+	color: rgb(255, 255, 255);
+}
+
+.fi-input-preview {
+	font-size: 16px;
+	margin: 0 0 0 5px;
+	vertical-align: middle;
+}
+
+.rtl .fi-input-preview {
+	margin: 0 5px 0 0;
+}
+
+/*	Delete button
+---------------------------------------------------------------------------- */
+.fi-delete-wrap {
+	display: flex;
+	justify-content: flex-end;
+	margin: -0.8em 0 0.4em;
+}
+
+.fi-delete-info {
+	color: #d90707;
+	display: none;
+	flex: 1;
+	font-weight: bold;
+	text-align: center;
+}
+
+.fi-delete-button {
+	background-color: #fff;
+	border: 1px solid var(--fi-delete-button-color);
+	border-radius: 6px;
+	color: var(--fi-delete-button-color);
+	display: none;
+	padding: 2px 6px;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+	cursor: pointer;
+	margin-left: 1em;
+}
+
+.fi-delete-button i {
+	margin-right: 2px;
+}
+
+.fi-delete-button:hover {
+	color: #fff;
+}
+
+.fi-delete {
+	--fi-delete-button-color: #d90707;
+}
+
+.fi-delete:hover {
+	background-color: var(--fi-delete-button-color);
+}
+
+.fi-restore {
+	--fi-delete-button-color: green;
+}
+
+.fi-restore:hover {
+	background-color: var(--fi-delete-button-color);
+}
+
+.fi-delete-button:focus {
+	outline: none;
+}
+
+.fi-delete-button:focus-visible {
+	outline: 2px solid;
+}
+
+/*	Back to top link
+---------------------------------------------------------------------------- */
+.fi-top {
+	float: right;
+	font-size: 1.2em;
+}
+
+.fi-top:hover {
+	text-decoration: none;
+}
+
+.fi-top i {
+	color: rgb(128, 128, 128);
+}
+
+/*	Clone link
+---------------------------------------------------------------------------- */
+.fi-clone-link {
+	text-align: right;
+}
+
+.fi-clone-link .fi-clone-btn {
+	padding: 3px 2px;
+}
