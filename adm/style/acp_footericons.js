@@ -60,7 +60,6 @@ function preview() {
 
 		// Icon link URL
 		$fiUrl.each(function () {
-			//if ($(this).val()) {
 			if ($(this).is(".is-validated")) {
 				$deleteButton.show();
 			}
