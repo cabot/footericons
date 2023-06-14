@@ -1,9 +1,8 @@
 # Footer Icons phpBB Extension
 
 ## Minimum Requirements
-* phpBB 3.3.10
-* PHP 7.1.3
-* damaïo style 1.0.8
+* phpBB 3.2
+* PHP 5.4.7
 
 ## Install
 1. Download the latest release.
