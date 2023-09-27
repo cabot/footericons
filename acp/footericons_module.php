@@ -122,7 +122,7 @@ class footericons_module
 			$user_id = $user->data['user_id'];
 			$user_ip = $user->ip;
 
-			$phpbb_log->add('admin', $user_id, $user_ip, 'ACP_FI_SAVED');
+			$phpbb_log->add('admin', $user_id, $user_ip, 'LOG_FI_MODIFIED');
 			trigger_error($language->lang('ACP_FI_SAVED') . adm_back_link($this->u_action));
 		}
 

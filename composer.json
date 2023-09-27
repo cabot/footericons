@@ -2,7 +2,7 @@
     "name": "cabot/footericons",
     "type": "phpbb-extension",
     "description": "Add icon links below the board.",
-    "homepage": "https://forum.cabotweb.fr",
+    "homepage": "https://github.com/cabot/footericons",
     "version": "1.0.0-RC2",
     "license": "GPL-2.0-only",
     "authors": [

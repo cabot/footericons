@@ -36,4 +36,5 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	'ACP_FI_TITLE'					=> 'Footer Icons',
 	'ACP_FI_CONF'					=> 'Footer Icons Configuration',
+	'LOG_FI_MODIFIED'				=> '<strong>Footer icons configuration modified</strong>',
 ]);

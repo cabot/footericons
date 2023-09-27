@@ -36,4 +36,5 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	'ACP_FI_TITLE'					=> 'Icônes de pied de page',
 	'ACP_FI_CONF'					=> 'Configuration des icônes',
+	'LOG_FI_MODIFIED'				=> '<strong>Configuration des icônes de pied de page modifiée</strong>',
 ]);

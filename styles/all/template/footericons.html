@@ -1,5 +1,5 @@
 {% INCLUDECSS '@cabot_footericons/footericons.css' %}
-{% INCLUDECSS '@cabot_footericons/webfonts/fa-brands.min.css' %}
+{% INCLUDECSS '@cabot_footericons/fontawesome/css/fa-brands.min.css' %}
 {% for icon in fi_icons %}
 <li class="fi-icon-item fi-item-{{ loop.index }}" style="--fi-color: {{ icon.FI_COLOR }}; --fi-color-hover: {{ icon.FI_COLOR_HOVER }}; --fi-bgcolor: {{ icon.FI_BGCOLOR }}; --fi-bgcolor-hover: {{ icon.FI_BGCOLOR_HOVER }};{% if icon.FI_SHADOW_COLOR %} --fi-shadow-color: 1px 1px {{ icon.FI_SHADOW_COLOR }};{% endif %}">
 	<a class="fi-link fa-stack{% if icon.FI_BG eq 0 %} fi-nobg{% endif %}" href="{{ icon.FI_URL }}"{% if icon.FI_OPEN eq 1 %} target="_blank"{% endif %} title="{% if icon.FI_DESC %}{{ icon.FI_DESC }}{% else %}{{ icon.FI_NAME }}{% endif %}{% if icon.FI_OPEN eq 1 %} {{ lang('FI_OPEN_NEW') }}{% endif %}">
