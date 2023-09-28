@@ -2,8 +2,8 @@
     "name": "cabot/footericons",
     "type": "phpbb-extension",
     "description": "Add icon links below the board.",
-    "homepage": "https://forum.cabotweb.fr",
-    "version": "1.0.0-RC1",
+    "homepage": "https://github.com/cabot/footericons",
+    "version": "1.0.0-RC2",
     "license": "GPL-2.0-only",
     "authors": [
         {
@@ -12,8 +12,7 @@
             "role": "SushiMaker"
         },
         {
-            "name": "James Newcombe",
-            "username": "HiFiKabin",
+            "name": "James Newcombe aka HiFiKabin",
             "email": "webmaster@hifikabin.me.uk",
             "homepage": "https://phpbb.hifikabin.me.uk/",
             "role": "Wise man"

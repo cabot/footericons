@@ -1,0 +1,15 @@
+.footerbar .main-width {
+	display: block;
+}
+
+.copyright {
+	text-align: center;
+}
+
+.socialinks {
+	display: none;
+}
+
+.fi-icons-list.fi-page-body-after {
+	margin: 5px 0;
+}

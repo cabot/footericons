@@ -8,9 +8,18 @@
 	display: flex;
 	flex-wrap: wrap;
 	font-size: 10px;
-	gap: 6px;
+	gap: 2px;
 	justify-content: var(--fi-align);
 	list-style: none;
+	margin: 0 0 5px;
+}
+
+.fi-copy-append {
+	margin: 0;
+}
+
+.fi-page-body-after {
+	margin: 5px 0 0;
 }
 
 .fi-link {

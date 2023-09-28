@@ -1,5 +1,5 @@
 {% INCLUDECSS '@cabot_footericons/spectrum/spectrum.min.css' %}
-{% INCLUDECSS '@cabot_footericons/webfonts/fa-brands.min.css' %}
+{% INCLUDECSS '@cabot_footericons/fontawesome/css/fa-brands.min.css' %}
 {% INCLUDECSS '@cabot_footericons/acp_footericons.css' %}
 {% INCLUDEJS '@cabot_footericons/spectrum/spectrum.min.js' %}
 {% INCLUDEJS '@cabot_footericons/acp_footericons.js' %}
@@ -70,7 +70,7 @@
 			<li class="fi-list-item fi-item-{{ loop.index }}" style="--fi-color: {{ icon.FI_COLOR }}; --fi-color-hover: {{ icon.FI_COLOR_HOVER }}; --fi-bgcolor: {{ icon.FI_BGCOLOR }}; --fi-bgcolor-hover: {{ icon.FI_BGCOLOR_HOVER }};{% if icon.FI_SHADOW_COLOR %} --fi-shadow-color: {{ icon.FI_SHADOW_COLOR }};{% endif %}">
 				<a class="fi-link fa-stack{% if icon.FI_BG eq 0 %} fi-nobg{% endif %}" href="{{ icon.FI_URL }}" title="{% if icon.FI_DESC %}{{ icon.FI_DESC }}{% else %}{{ icon.FI_NAME }}{% endif %}{% if icon.FI_OPEN eq 1 %} {{ lang('FI_OPEN_NEW') }}{% endif %}"{% if icon.FI_OPEN eq 1 %} target="_blank"{% endif %}>
 					{% if icon.FI_BG neq 0 %}
-					<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle{% else %}fa-square{% endif %} fa-stack-2x" aria-hidden="true"></i>
+					<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle {% elseif icon.FI_BG eq 2 %}fa-square{% else %}fa-stop{% endif %} fa-stack-2x" aria-hidden="true"></i>
 					{% endif %}
 					<i class="fi-icon fa {{ icon.FI_CODE }} {% if icon.FI_BG neq 0 %}fa-stack-1x{% else %}fa-stack-2x{% endif %}" aria-hidden="true"></i>
 					<span class="sr-only">{{ icon.FI_NAME }}{% if icon.FI_OPEN eq 1 %} {{ lang('FI_OPEN_NEW') }}{% endif %}</span>
@@ -94,19 +94,30 @@
 					--fi-bgcolor-hover: {% if icon.FI_BGCOLOR_HOVER %}{{ icon.FI_BGCOLOR_HOVER }}{% else %}transparent{% endif %};
 					{% if icon.FI_SHADOW_COLOR %} --fi-shadow-color: {{ icon.FI_SHADOW_COLOR }};{% endif %}
 					">
-					<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle{% elseif icon.FI_BG eq 2 %}fa-square{% endif %} fa-stack-2x" aria-hidden="true"></i>
+					<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle{% elseif icon.FI_BG eq 2 %}fa-square{% elseif icon.FI_BG eq 3 %}fa-stop{% endif %} fa-stack-2x" aria-hidden="true"></i>
 					<i class="fi-icon fa {% if icon.FI_CODE %}{{ icon.FI_CODE }}{% else %}fa-caret-right{% endif %} {% if icon.FI_BG neq 0 %}fa-stack-1x{% else %}fa-stack-2x{% endif %}" data-icon="{% if icon.FI_CODE %}{{ icon.FI_CODE }}{% else %}fa-caret-right{% endif %}" data-code-id="fi-code_{{ loop.index }}" aria-hidden="true"></i>
 				</span>
 				<span class="fi-row-name-preview">{% if icon.FI_NAME %}{{ icon.FI_NAME }}{% else %}{{ lang('ACP_FI_DEFAULT_TITLE') }}{% endif %}</span>
 				{% endapply %}
 			</legend>
+
+			{% if icon.FI_URL %}
+			<div class="fi-delete-wrap nojs-hide">
+				<span class="fi-delete-info">{{ lang('ACP_FI_DELETE_INFO') }}</span>
+				<button class="fi-delete-button fi-delete">
+					<i class="fa fa-trash-o" aria-hidden="true"></i>
+					<span class="fi-delete-text">{{ lang('ACP_FI_DELETE_YES') }}</span>
+				</button>
+			</div>
+			{% endif %}
+
 			<dl>
 				<dt>
 					<label for="fi-url_{{ loop.index }}">{{ lang('ACP_FI_URL') ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_URL_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<input id="fi-url_{{ loop.index }}" class="fi-url-input" name="fi_url[]" type="url" value="{{ icon.FI_URL }}" size="50">
+					<input id="fi-url_{{ loop.index }}" class="fi-url-input{% if icon.FI_URL %} is-validated{% endif %}" name="fi_url[]" type="url" value="{{ icon.FI_URL }}" size="50">
 				</dd>
 			</dl>
 			<dl>
@@ -131,10 +142,6 @@
 				<dt>
 					<label for="fi-open_{{ loop.index }}">{{ lang('ACP_FI_OPEN') ~ lang('COLON') }}</label>
 				</dt>
-				<!--<dd>
-					<input type="radio" class="radio" name="fi_open[]" value="0" {% if icon.FI_OPEN eq 0 %} checked="checked"{% endif %}> {{ lang('ACP_FI_OPEN_SAME') }} &nbsp;
-					<input type="radio" class="radio" name="fi_open[]" value="1" {% if icon.FI_OPEN eq 1 %} checked="checked"{% endif %}> {{ lang('ACP_FI_OPEN_NEW') }}
-				</dd>-->
 				<dd>
 					<select class="fi-open" id="fi-open_{{ loop.index }}" name="fi_open[]">
 						<option value="0"{% if icon.FI_OPEN eq 0 %} selected="selected"{% endif %}>{{ lang('ACP_FI_OPEN_SAME') }}</option>
@@ -142,7 +149,7 @@
 					</select>
 				</dd>
 			</dl>
-			<dl class="pouet">
+			<dl>
 				<dt>
 					<label for="fi-code_{{ loop.index }}">{{ lang('ACP_FI_CODE') ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_CODE_EXPLAIN') }}</span>
@@ -177,10 +184,11 @@
 						<option value="0"{% if icon.FI_BG eq 0 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_NONE') }}</option>
 						<option value="1"{% if icon.FI_BG eq 1 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_CIRCLE') }}</option>
 						<option value="2"{% if icon.FI_BG eq 2 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_SQUARE') }}</option>
+						<option value="3"{% if icon.FI_BG eq 3 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_STOP') }}</option>
 					</select>
 				</dd>
 			</dl>
-			<dl class="is-togglable">
+			<dl class="is-togglable is-closed">
 				<dt>
 					<label for="fi-bgcolor_{{ loop.index }}">{{ lang('ACP_FI_BGCOLOR') ~ lang('COLON') }}</label><br>
 				</dt>
@@ -188,7 +196,7 @@
 					<input id="fi-bgcolor_{{ loop.index }}" class="fi-bgcolor fi-input-color" data-css-var="--fi-bgcolor" type="text" name="fi_bgcolor[]" value="{% if icon.FI_BGCOLOR %}{{ icon.FI_BGCOLOR }}{% else %}transparent{% endif %}">
 				</dd>
 			</dl>
-			<dl class="is-togglable">
+			<dl class="is-togglable is-closed">
 				<dt>
 					<label for="fi-bgcolor-hover_{{ loop.index }}">{{ lang('ACP_FI_BGCOLOR_HOVER') ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_BGCOLOR_HOVER_EXPLAIN') }}</span>
@@ -214,7 +222,7 @@
 		{% endfor %}
 	</fieldset>
 
-	<p id="fi-clone-link" class="fi-clone-link">
+	<p id="fi-clone-link" class="fi-clone-link nojs-hide">
 		<input id="fi-clone-btn" type="button" class="button2 fi-clone-btn" value="{{ lang('ACP_FI_MORE_LINKS') }}">
 	</p>
 
@@ -224,10 +232,11 @@
 		<input class="button2" type="reset" name="reset" value="{{ lang('RESET') }}">
 	</p>
 </form>
-{# {% EVENT icons_list %} #}
 <script>
 	const defaultLegendLang = "{{ lang('ACP_FI_DEFAULT_TITLE')|e ('js') }}",
 		closeIconsLang = "{{ lang('ACP_FI_ICON_CLOSE')|e ('js') }}",
-		searchIconLang = "{{ lang('ACP_FI_ICON_SEARCH')|e ('js') }}";
+		searchIconLang = "{{ lang('ACP_FI_ICON_SEARCH')|e ('js') }}",
+		deleteIconLang = "{{ lang('ACP_FI_DELETE_YES')|e ('js') }}",
+		restoreIconLang = "{{ lang('ACP_FI_DELETE_NO')|e ('js') }}";
 </script>
 {% INCLUDE 'overall_footer.html' %}
