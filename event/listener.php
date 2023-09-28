@@ -14,7 +14,6 @@ use phpbb\template\template;
 use phpbb\db\driver\driver_interface;
 use phpbb\config\config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use phpbb\language\language;
 
 /**
 * Event listener
@@ -69,7 +68,7 @@ class listener implements EventSubscriberInterface
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
-	public function footericons($event)
+	public function footericons()
 	{
 		$this->template->assign_vars([
 			'FI_ENABLE'		=> $this->config['footericons_enable'],
@@ -78,7 +77,7 @@ class listener implements EventSubscriberInterface
 			'FI_SIZE'		=> $this->config['footericons_size'],
 		]);
 
-		$sql = 'SELECT * 
+		$sql = 'SELECT *
 		FROM '. $this->footericons_table;
 		$result	 = $this->db->sql_query($sql, 86400);
 

@@ -102,7 +102,7 @@
 			</legend>
 
 			{% if icon.FI_URL %}
-			<div class="fi-delete-wrap">
+			<div class="fi-delete-wrap nojs-hide">
 				<span class="fi-delete-info">{{ lang('ACP_FI_DELETE_INFO') }}</span>
 				<button class="fi-delete-button fi-delete">
 					<i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -222,7 +222,7 @@
 		{% endfor %}
 	</fieldset>
 
-	<p id="fi-clone-link" class="fi-clone-link">
+	<p id="fi-clone-link" class="fi-clone-link nojs-hide">
 		<input id="fi-clone-btn" type="button" class="button2 fi-clone-btn" value="{{ lang('ACP_FI_MORE_LINKS') }}">
 	</p>
 

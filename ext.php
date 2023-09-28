@@ -10,9 +10,6 @@
 
 namespace cabot\footericons;
 
-/**
- * Extension class for custom enable/disable/purge actions
-*/
 class ext extends \phpbb\extension\base
 {
 	/**

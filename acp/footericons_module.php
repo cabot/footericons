@@ -25,7 +25,7 @@ class footericons_module
 	/** @var string */
 	public $page_title;
 
-	function main($id, $mode)
+	function main()
 	{
 		global $phpbb_container, $db, $template, $request, $config, $cache, $user, $phpbb_log, $language;
 
