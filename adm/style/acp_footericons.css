@@ -26,6 +26,10 @@
 	color: var(--fi-bgcolor-hover);
 }
 
+.fi-link:hover .fi-icon {
+	color: var(--fi-color-hover);
+}
+
 /* Preview each icon
 ---------------------------------------------------------------------------- */
 .fi-row {
