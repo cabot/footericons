@@ -24,12 +24,20 @@
         }
     ],
     "require": {
-        "php": ">=5.4.7"
+        "php": ">=5.4.7",
+        "phpbb/phpbb": ">=3.2.0",
+        "composer/installers": "~1.0.0"
     },
     "extra": {
         "display-name": "Footer Icons",
         "soft-require": {
             "phpbb/phpbb": ">=3.2.0"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/footer_icons",
+            "filename": "version_check",
+            "ssl": true
         }
     }
 }

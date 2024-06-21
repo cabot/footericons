@@ -1,7 +1,7 @@
 /*!
- * Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2023 Fonticons, Inc.
+ * Copyright 2024 Fonticons, Inc.
  */
 :root, :host {
   --fa-style-family-brands: 'Font Awesome 6 Brands';
@@ -68,6 +68,9 @@
 .fa-ups:before {
   content: "\f7e0"; }
 
+.fa-pixiv:before {
+  content: "\e640"; }
+
 .fa-wpexplorer:before {
   content: "\f2de"; }
 
@@ -125,6 +128,9 @@
 .fa-drupal:before {
   content: "\f1a9"; }
 
+.fa-jxl:before {
+  content: "\e67b"; }
+
 .fa-hire-a-helper:before {
   content: "\f3b0"; }
 
@@ -166,6 +172,9 @@
 
 .fa-deskpro:before {
   content: "\f38f"; }
+
+.fa-brave:before {
+  content: "\e63c"; }
 
 .fa-sistrix:before {
   content: "\f3ee"; }
@@ -320,6 +329,9 @@
 .fa-cloudsmith:before {
   content: "\f384"; }
 
+.fa-opensuse:before {
+  content: "\e62b"; }
+
 .fa-square-dribbble:before {
   content: "\f397"; }
 
@@ -398,6 +410,9 @@
 .fa-kickstarter:before {
   content: "\f3bb"; }
 
+.fa-square-kickstarter:before {
+  content: "\f3bb"; }
+
 .fa-grav:before {
   content: "\f2d6"; }
 
@@ -446,6 +461,9 @@
 .fa-bluetooth-b:before {
   content: "\f294"; }
 
+.fa-square-letterboxd:before {
+  content: "\e62e"; }
+
 .fa-sticker-mule:before {
   content: "\f3f7"; }
 
@@ -472,6 +490,9 @@
 
 .fa-confluence:before {
   content: "\f78d"; }
+
+.fa-shoelace:before {
+  content: "\e60c"; }
 
 .fa-mdb:before {
   content: "\f8ca"; }
@@ -583,6 +604,9 @@
 
 .fa-envira:before {
   content: "\f299"; }
+
+.fa-google-scholar:before {
+  content: "\e63b"; }
 
 .fa-square-gitlab:before {
   content: "\e5ae"; }
@@ -710,6 +734,9 @@
 .fa-vine:before {
   content: "\f1ca"; }
 
+.fa-signal-messenger:before {
+  content: "\e663"; }
+
 .fa-paypal:before {
   content: "\f1ed"; }
 
@@ -743,6 +770,9 @@
 .fa-nfc-symbol:before {
   content: "\e531"; }
 
+.fa-mintbit:before {
+  content: "\e62f"; }
+
 .fa-ethereum:before {
   content: "\f42e"; }
 
@@ -767,11 +797,17 @@
 .fa-bimobject:before {
   content: "\f378"; }
 
+.fa-brave-reverse:before {
+  content: "\e63d"; }
+
 .fa-square-google-plus:before {
   content: "\f0d4"; }
 
 .fa-google-plus-square:before {
   content: "\f0d4"; }
+
+.fa-web-awesome:before {
+  content: "\e682"; }
 
 .fa-mandalorian:before {
   content: "\f50f"; }
@@ -860,6 +896,9 @@
 .fa-tencent-weibo:before {
   content: "\f1d5"; }
 
+.fa-letterboxd:before {
+  content: "\e62d"; }
+
 .fa-symfony:before {
   content: "\f83d"; }
 
@@ -923,6 +962,9 @@
 .fa-xbox:before {
   content: "\f412"; }
 
+.fa-square-web-awesome-stroke:before {
+  content: "\e684"; }
+
 .fa-searchengin:before {
   content: "\f3eb"; }
 
@@ -983,6 +1025,9 @@
 .fa-cmplid:before {
   content: "\e360"; }
 
+.fa-upwork:before {
+  content: "\e641"; }
+
 .fa-facebook:before {
   content: "\f09a"; }
 
@@ -1012,6 +1057,9 @@
 
 .fa-autoprefixer:before {
   content: "\f41c"; }
+
+.fa-square-upwork:before {
+  content: "\e67c"; }
 
 .fa-slideshare:before {
   content: "\f1e7"; }
@@ -1091,6 +1139,9 @@
 .fa-sellsy:before {
   content: "\f213"; }
 
+.fa-square-web-awesome:before {
+  content: "\e683"; }
+
 .fa-sass:before {
   content: "\f41e"; }
 
@@ -1127,6 +1178,9 @@
 .fa-waze:before {
   content: "\f83f"; }
 
+.fa-bluesky:before {
+  content: "\e671"; }
+
 .fa-cc-jcb:before {
   content: "\f24b"; }
 
@@ -1153,6 +1207,9 @@
 
 .fa-supple:before {
   content: "\f3f9"; }
+
+.fa-webflow:before {
+  content: "\e65c"; }
 
 .fa-css3:before {
   content: "\f13c"; }
