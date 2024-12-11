@@ -15,8 +15,8 @@
 				<label for="footericons_enable">{{ lang('ACP_FI_ENABLE') ~ lang('COLON') }}</label>
 			</dt>
 			<dd>
-				<input type="radio" class="radio" id="footericons_enable" name="footericons_enable" value="1"{% if FI_ENABLE eq 1 %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="footericons_enable" value="0"{% if FI_ENABLE eq 0 %} checked="checked"{% endif %}> {{ lang('NO') }}
+				<input type="radio" class="radio" id="footericons_enable" name="footericons_enable" value="1"{% if FI_ENABLE %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
+				<input type="radio" class="radio" name="footericons_enable" value="0"{% if not FI_ENABLE %} checked="checked"{% endif %}> {{ lang('NO') }}
 			</dd>
 		</dl>
 		<dl>
@@ -25,10 +25,10 @@
 			</dt>
 			<dd>
 				<select name="footericons_position" id="footericons_position">
-					<option value="0" {% if FI_POSITION eq 0 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_PAGE_BODY_AFTER') }}</option>
-					<option value="1" {% if FI_POSITION eq 1 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_COPYRIGHT_PREPEND') }}</option>
-					<option value="2" {% if FI_POSITION eq 2 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_COPYRIGHT_APPEND') }}</option>
-					<option value="3" {% if FI_POSITION eq 3 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_FOOTER_AFTER') }}</option>
+					<option value="0"{% if FI_POSITION eq 0 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_PAGE_BODY_AFTER') }}</option>
+					<option value="1"{% if FI_POSITION eq 1 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_COPYRIGHT_PREPEND') }}</option>
+					<option value="2"{% if FI_POSITION eq 2 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_COPYRIGHT_APPEND') }}</option>
+					<option value="3"{% if FI_POSITION eq 3 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_FOOTER_AFTER') }}</option>
 				</select>
 			</dd>
 		</dl>
@@ -38,9 +38,9 @@
 			</dt>
 			<dd>
 				<select name="footericons_align" id="footericons_align">
-					<option value="start" {% if FI_ALIGN eq 'start' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_START') }}</option>
-					<option value="center" {% if FI_ALIGN eq 'center' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_CENTER') }}</option>
-					<option value="end" {% if FI_ALIGN eq 'end' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_END') }}</option>
+					<option value="start"{% if FI_ALIGN eq 'start' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_START') }}</option>
+					<option value="center"{% if FI_ALIGN eq 'center' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_CENTER') }}</option>
+					<option value="end"{% if FI_ALIGN eq 'end' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_END') }}</option>
 				</select>
 			</dd>
 		</dl>
@@ -68,12 +68,12 @@
 		{% for icon in fi_icons %}
 			{% if icon.FI_URL %}
 			<li class="fi-list-item fi-item-{{ loop.index }}" style="--fi-color: {{ icon.FI_COLOR }}; --fi-color-hover: {{ icon.FI_COLOR_HOVER }}; --fi-bgcolor: {{ icon.FI_BGCOLOR }}; --fi-bgcolor-hover: {{ icon.FI_BGCOLOR_HOVER }};{% if icon.FI_SHADOW_COLOR %} --fi-shadow-color: {{ icon.FI_SHADOW_COLOR }};{% endif %}">
-				<a class="fi-link fa-stack{% if icon.FI_BG eq 0 %} fi-nobg{% endif %}" href="{{ icon.FI_URL }}" title="{% if icon.FI_DESC %}{{ icon.FI_DESC }}{% else %}{{ icon.FI_NAME }}{% endif %}{% if icon.FI_OPEN eq 1 %} {{ lang('FI_OPEN_NEW') }}{% endif %}"{% if icon.FI_OPEN eq 1 %} target="_blank"{% endif %}>
+				<a class="fi-link fa-stack{% if icon.FI_BG eq 0 %} fi-nobg{% endif %}" href="{{ icon.FI_URL }}" title="{% if icon.FI_DESC %}{{ icon.FI_DESC }}{% else %}{{ icon.FI_NAME }}{% endif %}{% if icon.FI_OPEN %} {{ lang('FI_OPEN_NEW') }}{% endif %}"{% if icon.FI_OPEN %} target="_blank"{% endif %}>
 					{% if icon.FI_BG neq 0 %}
 					<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle {% elseif icon.FI_BG eq 2 %}fa-square{% else %}fa-stop{% endif %} fa-stack-2x" aria-hidden="true"></i>
 					{% endif %}
 					<i class="fi-icon fa {{ icon.FI_CODE }} {% if icon.FI_BG neq 0 %}fa-stack-1x{% else %}fa-stack-2x{% endif %}" aria-hidden="true"></i>
-					<span class="sr-only">{{ icon.FI_NAME }}{% if icon.FI_OPEN eq 1 %} {{ lang('FI_OPEN_NEW') }}{% endif %}</span>
+					<span class="sr-only">{{ icon.FI_NAME }}{% if icon.FI_OPEN %} {{ lang('FI_OPEN_NEW') }}{% endif %}</span>
 				</a>
 			</li>
 			{% endif %}
@@ -85,7 +85,7 @@
 		<legend>{{ lang('ACP_FI_ICONS') }}</legend>
 		{% for icon in fi_icons %}
 		<fieldset id="fi-row_{{ loop.index }}" class="fi-row">
-			<legend class="fi-row-legend" {% if icon.FI_DESC %}title="{{ icon.FI_DESC }}" {% endif %} style="--fi-size: {{ FI_SIZE }};">
+			<legend class="fi-row-legend"{% if icon.FI_DESC %} title="{{ icon.FI_DESC }}"{% endif %} style="--fi-size: {{ FI_SIZE }};">
 				{% apply spaceless %}
 				<span class="fi-stack fa-stack" style="
 					--fi-color: {% if icon.FI_COLOR %}{{ icon.FI_COLOR }}{% else %}#105289{% endif %};
@@ -144,8 +144,8 @@
 				</dt>
 				<dd>
 					<select class="fi-open" id="fi-open_{{ loop.index }}" name="fi_open[]">
-						<option value="0"{% if icon.FI_OPEN eq 0 %} selected="selected"{% endif %}>{{ lang('ACP_FI_OPEN_SAME') }}</option>
-						<option value="1"{% if icon.FI_OPEN eq 1 %} selected="selected"{% endif %}>{{ lang('ACP_FI_OPEN_NEW') }}</option>
+						<option value="0"{% if not icon.FI_OPEN %} selected="selected"{% endif %}>{{ lang('ACP_FI_OPEN_SAME') }}</option>
+						<option value="1"{% if icon.FI_OPEN %} selected="selected"{% endif %}>{{ lang('ACP_FI_OPEN_NEW') }}</option>
 					</select>
 				</dd>
 			</dl>

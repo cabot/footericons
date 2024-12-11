@@ -6,7 +6,7 @@
  * @copyright (c) 2023 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
-*/
+ */
 
 namespace cabot\footericons\migrations;
 
@@ -60,11 +60,11 @@ class footericons_install extends \phpbb\db\migration\migration
 	}
 
 	/**
-	* Drop the Footer Icons table schema from the database
-	*
-	* @return array Array of table schema
-	* @access public
-	*/
+	 * Drop the Footer Icons table schema from the database
+	 *
+	 * @return array Array of table schema
+	 * @access public
+	 */
 	public function revert_schema()
 	{
 		return [

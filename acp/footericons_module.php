@@ -6,13 +6,13 @@
  * @copyright (c) 2023 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
-*/
+ */
 
 namespace cabot\footericons\acp;
 
 /**
  * @package acp
-*/
+ */
 
 class footericons_module
 {
@@ -48,7 +48,7 @@ class footericons_module
 					'FI_URL'			=> $row['fi_url'],
 					'FI_NAME'			=> $row['fi_name'],
 					'FI_DESC'			=> $row['fi_desc'],
-					'FI_OPEN'			=> $row['fi_open'],
+					'FI_OPEN'			=> (bool) $row['fi_open'],
 					'FI_CODE'			=> $row['fi_code'],
 					'FI_COLOR'			=> $row['fi_color'],
 					'FI_COLOR_HOVER'	=> $row['fi_color_hover'],
@@ -127,11 +127,10 @@ class footericons_module
 		}
 
 		$template->assign_vars([
-			'FI_ENABLE'		=> $config['footericons_enable'],
+			'FI_ENABLE'		=> (bool) $config['footericons_enable'],
 			'FI_POSITION'	=> $config['footericons_position'],
 			'FI_ALIGN'		=> $config['footericons_align'],
 			'FI_SIZE'		=> $config['footericons_size'],
-			'S_FI_CONFIG'	=> true,
 		]);
 	}
 }

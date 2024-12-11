@@ -6,7 +6,7 @@
  * @copyright (c) 2023 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
-*/
+ */
 
 namespace cabot\footericons\event;
 
@@ -16,9 +16,9 @@ use phpbb\config\config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
-* Event listener
-*
-*/
+ * Event listener
+ *
+ */
 class listener implements EventSubscriberInterface
 {
 	/** @var \phpbb\template\template */
@@ -34,13 +34,13 @@ class listener implements EventSubscriberInterface
 	protected $footericons_table;
 
 	/**
-	* Constructor
-	*
-	* @param \phpbb\config\config				$config
-	* @param \phpbb\template\template			$template
-	* @param \phpbb\db\driver\driver_interface	$db
-	* @param string								$footericons_table
-	*/
+	 * Constructor
+	 *
+	 * @param \phpbb\config\config				$config
+	 * @param \phpbb\template\template			$template
+	 * @param \phpbb\db\driver\driver_interface	$db
+	 * @param string							$footericons_table
+	 */
 
 	public function __construct(config $config, template $template, driver_interface $db, $footericons_table)
 	{
@@ -71,7 +71,7 @@ class listener implements EventSubscriberInterface
 	public function footericons()
 	{
 		$this->template->assign_vars([
-			'FI_ENABLE'		=> $this->config['footericons_enable'],
+			'FI_ENABLE'		=> (bool) $this->config['footericons_enable'],
 			'FI_POSITION'	=> $this->config['footericons_position'],
 			'FI_ALIGN'		=> $this->config['footericons_align'],
 			'FI_SIZE'		=> $this->config['footericons_size'],
@@ -89,7 +89,7 @@ class listener implements EventSubscriberInterface
 					'FI_URL'			=> $row['fi_url'],
 					'FI_NAME'			=> $row['fi_name'],
 					'FI_DESC'			=> $row['fi_desc'],
-					'FI_OPEN'			=> $row['fi_open'],
+					'FI_OPEN'			=> (bool) $row['fi_open'],
 					'FI_CODE'			=> $row['fi_code'],
 					'FI_COLOR'			=> $row['fi_color'],
 					'FI_COLOR_HOVER'	=> $row['fi_color_hover'],
