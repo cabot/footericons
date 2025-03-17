@@ -8,8 +8,14 @@
 * phpBB 3.2
 * PHP 5.4.7
 
-## Install
-1. Download the latest release.
+## Install (easy)
+1. Download the latest ready-to-install version [cabot_footericons.zip](https://github.com/cabot/footericons/releases/latest/download/cabot_footericons.zip).
+2. Unzip the downloaded archive and upload the folder it contains into the `ext/` directory of your phpBB board.
+3. Navigate in the ACP to `Customise -> Manage extensions`.
+4. Look for `Footer Icons` under the Disabled Extensions list, and click its `Enable` link.
+
+## Install (advanced)
+1. Download the latest `Source code` release.
 2. Unzip the downloaded release, and change the name of the folder to `footericons`.
 3. In the `ext` directory of your phpBB board, create a new directory named `cabot` (if it does not already exist).
 4. Copy the `footericons` folder to `/ext/cabot/` (if done correctly, you'll have the main extension class at (your forum root)/ext/cabot/footericons/composer.json).
@@ -27,4 +33,4 @@
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
-© 2023 - cabot
+© 2024 - cabot
