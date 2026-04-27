@@ -1,0 +1,29 @@
+/* FA Brands support
+---------------------------------------------------------------------------- */
+.fa-brands,
+.fab {
+	--_fa-family: var(--fa-family, var(--fa-style-family, 'Font Awesome 7 Free'));
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: var(--fa-display, inline-block);
+	font-family: var(--_fa-family);
+	font-feature-settings: normal;
+	font-style: normal;
+	font-synthesis: none;
+	font-variant: normal;
+	font-weight: var(--fa-style, 900);
+	text-align: center;
+	text-rendering: auto;
+}
+
+:is(.fab,
+	.fa-brands)::before {
+	content: var(--fa)/"";
+}
+
+@supports not (content: "" /"") {
+	:is(.fab,
+		.fa-brands)::before {
+		content: var(--fa);
+	}
+}
