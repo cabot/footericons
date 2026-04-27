@@ -2,11 +2,9 @@
 
 ![phpBB 3.3.x Compatible](https://img.shields.io/badge/phpBB-3.3.x%20Compatible%20-blue.svg)
 
-![phpBB 3.2.x Compatible](https://img.shields.io/badge/phpBB-3.2.x%20Compatible%20-blue.svg)
-
 ## Minimum Requirements
-* phpBB 3.2
-* PHP 5.4.7
+* phpBB 3.3.11
+* PHP 7.2
 
 ## Install (easy)
 1. Download the latest ready-to-install version [cabot_footericons.zip](https://github.com/cabot/footericons/releases/latest/download/cabot_footericons.zip).
@@ -33,4 +31,4 @@
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
-© 2024 - cabot
+© 2024-2026 - cabot

@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "Add icon links below the board.",
     "homepage": "https://github.com/cabot/footericons",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "license": "GPL-2.0-only",
     "authors": [
         {
@@ -21,17 +21,21 @@
             "name": "Sebastian Castro",
             "homepage": "https://github.com/seballot/spectrum",
             "role": "Spectrum 2 Developer"
-        }
+        },
+        {
+			"name": "Skouat",
+			"homepage": "https://github.com/Skouat",
+			"role": "Developer"
+		}
     ],
     "require": {
-        "php": ">=5.4.7",
-        "phpbb/phpbb": ">=3.2.0",
-        "composer/installers": "~1.0.0"
+        "php": ">=7.2",
+        "composer/installers": "~1.0"
     },
     "extra": {
         "display-name": "Footer Icons",
         "soft-require": {
-            "phpbb/phpbb": ">=3.2.0"
+            "phpbb/phpbb": ">=3.3.11,<4.0.0@dev"
         },
         "version-check": {
             "host": "www.phpbb.com",
