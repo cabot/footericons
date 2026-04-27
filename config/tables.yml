@@ -1,0 +1,2 @@
+parameters:
+    cabot.footericons.table: '%core.table_prefix%footericons'

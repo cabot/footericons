@@ -1,12 +1,37 @@
-parameters:
-    tables.footericons_table: '%core.table_prefix%footericons'
+imports:
+    - { resource: tables.yml }
+
 services:
     cabot.footericons.listener:
         class: cabot\footericons\event\listener
         arguments:
-        - '@config'
-        - '@template'
-        - '@dbal.conn'
-        - '%tables.footericons_table%'
+            - '@cache.driver'
+            - '@config'
+            - '@dbal.conn'
+            - '@ext.manager'
+            - '@path_helper'
+            - '@template'
+            - '%cabot.footericons.table%'
         tags:
             - { name: event.listener }
+
+    cabot.footericons.acp_controller:
+        class: cabot\footericons\controller\acp_controller
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@ext.manager'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@cache.driver'
+            - '@cabot.footericons.service'
+            - '%cabot.footericons.table%'
+
+    cabot.footericons.service:
+        class: cabot\footericons\services\footericons_service
+        arguments:
+            - '@dbal.conn'
+            - '%cabot.footericons.table%'
