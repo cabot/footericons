@@ -3,7 +3,7 @@
  *
  * Footer Icons extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2023 - cabot
+ * @copyright (c) 2023-2026 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */

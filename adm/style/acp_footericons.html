@@ -1,242 +1,265 @@
 {% INCLUDECSS '@cabot_footericons/spectrum/spectrum.min.css' %}
-{% INCLUDECSS '@cabot_footericons/fontawesome/css/brands.min.css' %}
 {% INCLUDECSS '@cabot_footericons/acp_footericons.css' %}
 {% INCLUDEJS '@cabot_footericons/spectrum/spectrum.min.js' %}
 {% INCLUDEJS '@cabot_footericons/acp_footericons.js' %}
 {% INCLUDE 'overall_header.html' %}
 
-<h1>{{ lang('ACP_FI_HEADING') }}</h1>
+<h1>{{ PAGE_HEADING }}</h1>
 
-<form id="acp_board" method="post" action="{{ U_ACTION }}" class="footericons-form">
-	<fieldset>
-		<legend>{{ lang('ACP_GENERAL_CONFIGURATION') }}</legend>
-		<dl>
-			<dt>
-				<label for="footericons_enable">{{ lang('ACP_FI_ENABLE') ~ lang('COLON') }}</label>
-			</dt>
-			<dd>
-				<input type="radio" class="radio" id="footericons_enable" name="footericons_enable" value="1"{% if FI_ENABLE %} checked="checked"{% endif %}> {{ lang('YES') }} &nbsp;
-				<input type="radio" class="radio" name="footericons_enable" value="0"{% if not FI_ENABLE %} checked="checked"{% endif %}> {{ lang('NO') }}
-			</dd>
-		</dl>
-		<dl>
-			<dt>
-				<label for="footericons_position">{{ lang('ACP_FI_POSITION') ~ lang('COLON') }}</label>
-			</dt>
-			<dd>
-				<select name="footericons_position" id="footericons_position">
-					<option value="0"{% if FI_POSITION eq 0 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_PAGE_BODY_AFTER') }}</option>
-					<option value="1"{% if FI_POSITION eq 1 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_COPYRIGHT_PREPEND') }}</option>
-					<option value="2"{% if FI_POSITION eq 2 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_COPYRIGHT_APPEND') }}</option>
-					<option value="3"{% if FI_POSITION eq 3 %} selected="selected" {% endif %}>{{ lang('ACP_FI_POSITION_FOOTER_AFTER') }}</option>
-				</select>
-			</dd>
-		</dl>
-		<dl>
-			<dt>
-				<label for="footericons_align">{{ lang('ACP_FI_ALIGN') ~ lang('COLON') }}</label>
-			</dt>
-			<dd>
-				<select name="footericons_align" id="footericons_align">
-					<option value="start"{% if FI_ALIGN eq 'start' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_START') }}</option>
-					<option value="center"{% if FI_ALIGN eq 'center' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_CENTER') }}</option>
-					<option value="end"{% if FI_ALIGN eq 'end' %} selected="selected" {% endif %}>{{ lang('ACP_FI_ALIGN_END') }}</option>
-				</select>
-			</dd>
-		</dl>
-		<dl>
-			<dt>
-				<label for="footericons_size">{{ lang('ACP_FI_SIZE') ~ lang('COLON') }}</label>
-				<br><span>{{ lang('ACP_FI_SIZE_EXPLAIN') }}</span>
-			</dt>
-			<dd>
-				<input id="footericons_size" name="footericons_size" type="text" value="{{ FI_SIZE }}" size="20" required>
-			</dd>
-		</dl>
-	</fieldset>
+{% if S_ERROR %}
+<div class="errorbox">
+	<h3>{{ lang('WARNING') }}</h3>
+	<p>{{ ERROR_MSG }}</p>
+</div>
+{% endif %}
 
-	<p class="submit-buttons">
-		{{ S_FORM_TOKEN }}
-		<input class="button1" type="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
-		<input class="button2" type="reset" name="reset" value="{{ lang('RESET') }}">
-	</p>
-
-	<fieldset>
-		<legend>{{ lang('ACP_FI_PREVIEW') }} <i class="fa fa-question-circle fa-fw i-preview" title="{{ lang('ACP_FI_PREVIEW_EXPLAIN') }}"></i>
-		</legend>
-		<ul id="fi-main-preview" class="fi-icons-list" style="--fi-size: {{ FI_SIZE }}; --fi-align: {{ FI_ALIGN }};">
-		{% for icon in fi_icons %}
-			{% if icon.FI_URL %}
-			<li class="fi-list-item fi-item-{{ loop.index }}" style="--fi-color: {{ icon.FI_COLOR }}; --fi-color-hover: {{ icon.FI_COLOR_HOVER }}; --fi-bgcolor: {{ icon.FI_BGCOLOR }}; --fi-bgcolor-hover: {{ icon.FI_BGCOLOR_HOVER }};{% if icon.FI_SHADOW_COLOR %} --fi-shadow-color: {{ icon.FI_SHADOW_COLOR }};{% endif %}">
-				<a class="fi-link fa-stack{% if icon.FI_BG eq 0 %} fi-nobg{% endif %}" href="{{ icon.FI_URL }}" title="{% if icon.FI_DESC %}{{ icon.FI_DESC }}{% else %}{{ icon.FI_NAME }}{% endif %}{% if icon.FI_OPEN %} {{ lang('FI_OPEN_NEW') }}{% endif %}"{% if icon.FI_OPEN %} target="_blank"{% endif %}>
-					{% if icon.FI_BG neq 0 %}
-					<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle {% elseif icon.FI_BG eq 2 %}fa-square{% else %}fa-stop{% endif %} fa-stack-2x" aria-hidden="true"></i>
-					{% endif %}
-					<i class="fi-icon fa {{ icon.FI_CODE }} {% if icon.FI_BG neq 0 %}fa-stack-1x{% else %}fa-stack-2x{% endif %}" aria-hidden="true"></i>
-					<span class="sr-only">{{ icon.FI_NAME }}{% if icon.FI_OPEN %} {{ lang('FI_OPEN_NEW') }}{% endif %}</span>
-				</a>
-			</li>
-			{% endif %}
-		{% endfor %}
-		</ul>
-	</fieldset>
-
-	<fieldset id="footericons_items">
-		<legend>{{ lang('ACP_FI_ICONS') }}</legend>
-		{% for icon in fi_icons %}
-		<fieldset id="fi-row_{{ loop.index }}" class="fi-row">
-			<legend class="fi-row-legend"{% if icon.FI_DESC %} title="{{ icon.FI_DESC }}"{% endif %} style="--fi-size: {{ FI_SIZE }};">
-				{% apply spaceless %}
-				<span class="fi-stack fa-stack" style="
-					--fi-color: {% if icon.FI_COLOR %}{{ icon.FI_COLOR }}{% else %}#105289{% endif %};
-					{% if icon.FI_COLOR_HOVER %}--fi-color-hover: {{ icon.FI_COLOR_HOVER }};{% endif %}
-					--fi-bgcolor: {% if icon.FI_BGCOLOR %}{{ icon.FI_BGCOLOR }}{% else %}transparent{% endif %};
-					--fi-bgcolor-hover: {% if icon.FI_BGCOLOR_HOVER %}{{ icon.FI_BGCOLOR_HOVER }}{% else %}transparent{% endif %};
-					{% if icon.FI_SHADOW_COLOR %} --fi-shadow-color: {{ icon.FI_SHADOW_COLOR }};{% endif %}
-					">
-					<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle{% elseif icon.FI_BG eq 2 %}fa-square{% elseif icon.FI_BG eq 3 %}fa-stop{% endif %} fa-stack-2x" aria-hidden="true"></i>
-					<i class="fi-icon fa {% if icon.FI_CODE %}{{ icon.FI_CODE }}{% else %}fa-caret-right{% endif %} {% if icon.FI_BG neq 0 %}fa-stack-1x{% else %}fa-stack-2x{% endif %}" data-icon="{% if icon.FI_CODE %}{{ icon.FI_CODE }}{% else %}fa-caret-right{% endif %}" data-code-id="fi-code_{{ loop.index }}" aria-hidden="true"></i>
+{% if S_ADD_EDIT %}
+	<form id="acp_footericon_edit" method="post" action="{{ U_ACTION }}">
+		<fieldset class="fi-edit" id="fi_edit">
+			<legend class="fi-edit-legend" style="--fi-size: {{ FI_SIZE ?: '2em' }};"{% if FI_DESC %} title="{{ FI_DESC }}"{% endif %}>
+				<span class="fi-stack fa-stack" style="--fi-color: {{ FI_COLOR ?: '#105289' }}; --fi-color-hover: {{ FI_COLOR_HOVER ?: '#105289' }};--fi-bgcolor: {{ FI_BGCOLOR|default('transparent') }}; --fi-bgcolor-hover: {{ FI_BGCOLOR_HOVER ?: 'transparent' }};{% if FI_SHADOW_COLOR %} --fi-shadow-color: {{ FI_SHADOW_COLOR }};{% endif %}">
+					<i class="fi-icon-bg fa{% if FI_BG eq 1 %} fa-circle{% elseif FI_BG eq 2 %} fa-square{% elseif FI_BG eq 3 %} fa-stop{% endif %} fa-stack-2x" aria-hidden="true"></i>
+					<i class="fi-icon {% if (FI_CODE ?: 'fa-caret-right') starts with 'fa-brands ' %}{{ FI_CODE ?: 'fa-caret-right' }}{% else %}fa {{ FI_CODE ?: 'fa-caret-right' }}{% endif %} {{ FI_BG neq 0 ? 'fa-stack-1x' : 'fa-stack-2x' }}" data-icon="{{ FI_CODE ?: 'fa-caret-right' }}" aria-hidden="true"></i>
 				</span>
-				<span class="fi-row-name-preview">{% if icon.FI_NAME %}{{ icon.FI_NAME }}{% else %}{{ lang('ACP_FI_DEFAULT_TITLE') }}{% endif %}</span>
-				{% endapply %}
+				<span class="fi-edit-name-preview">{{ FI_NAME ?: lang('ACP_FI_DEFAULT_TITLE') }}</span>
 			</legend>
 
-			{% if icon.FI_URL %}
-			<div class="fi-delete-wrap nojs-hide">
-				<span class="fi-delete-info">{{ lang('ACP_FI_DELETE_INFO') }}</span>
-				<button class="fi-delete-button fi-delete">
-					<i class="fa fa-trash-o" aria-hidden="true"></i>
-					<span class="fi-delete-text">{{ lang('ACP_FI_DELETE_YES') }}</span>
-				</button>
-			</div>
-			{% endif %}
-
 			<dl>
 				<dt>
-					<label for="fi-url_{{ loop.index }}">{{ lang('ACP_FI_URL') ~ lang('COLON') }}</label><br>
-					<span>{{ lang('ACP_FI_URL_EXPLAIN') }}</span>
-				</dt>
-				<dd>
-					<input id="fi-url_{{ loop.index }}" class="fi-url-input{% if icon.FI_URL %} is-validated{% endif %}" name="fi_url[]" type="url" value="{{ icon.FI_URL }}" size="50">
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="fi-name_{{ loop.index }}">{{ lang('ACP_FI_NAME') ~ lang('COLON') }}</label><br>
+					<label for="fi-name">{{ lang('ACP_FI_NAME') ~ '*' ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_NAME_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<input id="fi-name_{{ loop.index }}" class="fi-name-input required" name="fi_name[]" type="text" value="{{ icon.FI_NAME }}" size="20">
+					<input id="fi-name" class="fi-name-input" name="fi_name" type="text" value="{{ FI_NAME }}" size="20" placeholder="{{ lang('ACP_FI_REQUIRED') }}" required>
 				</dd>
 			</dl>
+
 			<dl>
 				<dt>
-					<label for="fi-desc_{{ loop.index }}">{{ lang('ACP_FI_DESC') ~ lang('COLON') }}</label><br>
-					<span>{{ lang('ACP_FI_DESC_EXPLAIN') }}</span>
+					<label for="fi-url">{{ lang('ACP_FI_URL') ~ '*' ~ lang('COLON') }}</label><br>
+					<span>{{ lang('ACP_FI_URL_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<input id="fi-desc_{{ loop.index }}" class="fi-desc" name="fi_desc[]" type="text" value="{{ icon.FI_DESC }}" size="50">
+					<input id="fi-url" name="fi_url" type="url" value="{{ FI_URL }}" size="50" placeholder="{{ lang('ACP_FI_REQUIRED') }}" required>
 				</dd>
 			</dl>
+
 			<dl>
 				<dt>
-					<label for="fi-open_{{ loop.index }}">{{ lang('ACP_FI_OPEN') ~ lang('COLON') }}</label>
-				</dt>
-				<dd>
-					<select class="fi-open" id="fi-open_{{ loop.index }}" name="fi_open[]">
-						<option value="0"{% if not icon.FI_OPEN %} selected="selected"{% endif %}>{{ lang('ACP_FI_OPEN_SAME') }}</option>
-						<option value="1"{% if icon.FI_OPEN %} selected="selected"{% endif %}>{{ lang('ACP_FI_OPEN_NEW') }}</option>
-					</select>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="fi-code_{{ loop.index }}">{{ lang('ACP_FI_CODE') ~ lang('COLON') }}</label><br>
+					<label for="fi-code">{{ lang('ACP_FI_CODE') ~ '*' ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_CODE_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<input id="fi-code_{{ loop.index }}" class="fi-code-input required" name="fi_code[]" type="text" value="{{ icon.FI_CODE }}" size="20"><i class="fi-input-preview fa {% if icon.FI_CODE %}{{ icon.FI_CODE }}{% else %}fa-caret-right{% endif %}"></i>
+					<input id="fi-code" class="fi-code-input" name="fi_code" type="text" value="{{ FI_CODE }}" size="20" placeholder="{{ lang('ACP_FI_REQUIRED') }}" required>
+					<i class="fi-input-preview fa{{ FI_CODE ? ' ' ~ FI_CODE }}" data-icon="{{ FI_CODE }}"></i>
 				</dd>
 			</dl>
+
 			<dl>
 				<dt>
-					<label for="fi-color_{{ loop.index }}">{{ lang('ACP_FI_COLOR') ~ lang('COLON') }}</label>
+					<label for="fi-desc">{{ lang('ACP_FI_DESC') ~ lang('COLON') }}</label><br>
+					<span>{{ lang('ACP_FI_DESC_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<input id="fi-color_{{ loop.index }}" class="fi-color fi-input-color" data-css-var="--fi-color" type="text" name="fi_color[]" data-default-color value="{% if icon.FI_COLOR %}{{ icon.FI_COLOR }}{% else %}#105289{% endif %}">
+					<input id="fi-desc" name="fi_desc" type="text" size="50" value="{{ FI_DESC }}">
 				</dd>
 			</dl>
+
 			<dl>
 				<dt>
-					<label for="fi-color-hover_{{ loop.index }}">{{ lang('ACP_FI_COLOR_HOVER') ~ lang('COLON') }}</label>
+					<label>{{ lang('ACP_FI_EXTERNAL_LINK') ~ lang('COLON') }}</label><br>
+					<span>{{ lang('ACP_FI_EXTERNAL_LINK_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<input id="fi-color-hover_{{ loop.index }}" class="fi-color-hover fi-input-color" data-css-var="--fi-color-hover" type="text" name="fi_color_hover[]" data-default-color value="{% if icon.FI_COLOR_HOVER %}{{ icon.FI_COLOR_HOVER }}{% else %}#105289{% endif %}">
+					<input type="radio" id="fi-open-yes" name="fi_open" value="1"{{ FI_OPEN ? ' checked' }}> <label for="fi-open-yes">{{ lang('YES') }}</label>
+					<input type="radio" id="fi-open-no" name="fi_open" value="0"{{ !FI_OPEN ? ' checked' }}> <label for="fi-open-no">{{ lang('NO') }}</label>
 				</dd>
 			</dl>
+
+			<dl class="">
+				<dt>
+					<label for="fi-color">{{ lang('ACP_FI_COLOR') ~ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input id="fi-color" class="fi-input-color" name="fi_color" type="text" value="{{ FI_COLOR ?: '#105289' }}" data-default-color="{{ FI_COLOR ?: '#105289' }}" data-css-var="--fi-color">
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>
+					<label for="fi-color-hover">{{ lang('ACP_FI_COLOR_HOVER') ~ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input id="fi-color-hover" class="fi-input-color" name="fi_color_hover" type="text" value="{{ FI_COLOR_HOVER ?: '#105289' }}" data-default-color="{{ FI_COLOR_HOVER ?: '#105289' }}" data-css-var="--fi-color-hover">
+				</dd>
+			</dl>
+
 			<dl class="has-fi-bg-select has-toggler">
 				<dt>
-					<label for="fi-bg_{{ loop.index }}">{{ lang('ACP_FI_BG') ~ lang('COLON') }}</label><br>
+					<label for="fi-bg">{{ lang('ACP_FI_BG') ~ lang('COLON') }}</label><br>
 					<span>{{ lang('ACP_FI_BG_EXPLAIN') }}</span>
 				</dt>
 				<dd>
-					<select class="fi-bg" id="fi-bg_{{ loop.index }}" name="fi_bg[]">
-						<option value="0"{% if icon.FI_BG eq 0 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_NONE') }}</option>
-						<option value="1"{% if icon.FI_BG eq 1 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_CIRCLE') }}</option>
-						<option value="2"{% if icon.FI_BG eq 2 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_SQUARE') }}</option>
-						<option value="3"{% if icon.FI_BG eq 3 %} selected="selected"{% endif %}>{{ lang('ACP_FI_BG_STOP') }}</option>
+					<select id="fi-bg" name="fi_bg">
+						<option value="0"{{ FI_BG eq 0 ? ' selected' }}>{{ lang('ACP_FI_BG_NONE') }}</option>
+						<option value="1"{{ FI_BG eq 1 ? ' selected' }}>{{ lang('ACP_FI_BG_CIRCLE') }}</option>
+						<option value="2"{{ FI_BG eq 2 ? ' selected' }}>{{ lang('ACP_FI_BG_SQUARE') }}</option>
+						<option value="3"{{ FI_BG eq 3 ? ' selected' }}>{{ lang('ACP_FI_BG_STOP') }}</option>
 					</select>
 				</dd>
 			</dl>
-			<dl class="is-togglable is-closed">
+
+			<dl class="is-togglable">
 				<dt>
-					<label for="fi-bgcolor_{{ loop.index }}">{{ lang('ACP_FI_BGCOLOR') ~ lang('COLON') }}</label><br>
+					<label for="fi-bgcolor">{{ lang('ACP_FI_BGCOLOR') ~ lang('COLON') }}</label>
 				</dt>
 				<dd>
-					<input id="fi-bgcolor_{{ loop.index }}" class="fi-bgcolor fi-input-color" data-css-var="--fi-bgcolor" type="text" name="fi_bgcolor[]" value="{% if icon.FI_BGCOLOR %}{{ icon.FI_BGCOLOR }}{% else %}transparent{% endif %}">
+					<input id="fi-bgcolor" class="fi-input-color" name="fi_bgcolor" type="text" value="{{ FI_BGCOLOR ?: 'transparent' }}" data-default-color="{{ FI_BGCOLOR ?: 'transparent' }}" data-css-var="--fi-bgcolor">
 				</dd>
 			</dl>
-			<dl class="is-togglable is-closed">
+
+			<dl class="is-togglable">
 				<dt>
-					<label for="fi-bgcolor-hover_{{ loop.index }}">{{ lang('ACP_FI_BGCOLOR_HOVER') ~ lang('COLON') }}</label><br>
-					<span>{{ lang('ACP_FI_BGCOLOR_HOVER_EXPLAIN') }}</span>
+					<label for="fi-bgcolor-hover">{{ lang('ACP_FI_BGCOLOR_HOVER') ~ lang('COLON') }}</label>
 				</dt>
 				<dd>
-					<input id="fi-bgcolor-hover_{{ loop.index }}" class="fi-bgcolor-hover fi-input-color" data-css-var="--fi-bgcolor-hover" type="text" name="fi_bgcolor_hover[]" value="{% if icon.FI_BGCOLOR_HOVER %}{{ icon.FI_BGCOLOR_HOVER }}{% else %}transparent{% endif %}">
+					<input id="fi-bgcolor-hover" class="fi-input-color" name="fi_bgcolor_hover" type="text" value="{{ FI_BGCOLOR_HOVER ?: 'transparent' }}" data-default-color="{{ FI_BGCOLOR_HOVER ?: 'transparent' }}" data-css-var="--fi-bgcolor-hover">
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>
+					<label for="fi-shadow-color">{{ lang('ACP_FI_SHADOW_COLOR') ~ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input id="fi-shadow-color" class="fi-input-color" name="fi_shadow_color" type="text" value="{{ FI_SHADOW_COLOR ?: 'transparent' }}" data-default-color="{{ FI_SHADOW_COLOR ?: 'transparent' }}" data-css-var="--fi-shadow-color">
+				</dd>
+			</dl>
+
+		</fieldset>
+
+		<p class="submit-buttons">
+			{{ S_FORM_TOKEN }}
+			<input class="button1" type="submit" name="submit" value="{{ lang('SUBMIT') }}">
+			<input class="button2" type="reset" name="reset" value="{{ lang('RESET') }}">
+		</p>
+	</form>
+{% else %}
+	<form method="post" action="{{ U_ACTION }}">
+		<fieldset>
+			<legend>{{ lang('ACP_GENERAL_CONFIGURATION') }}</legend>
+			<dl>
+				<dt>
+					<label for="footericons_enable">{{ lang('ACP_FI_ENABLE') ~ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input type="radio" class="radio" id="footericons_enable" name="footericons_enable" value="1"{{ FI_ENABLE ? ' checked' }}> {{ lang('YES') }} &nbsp;
+					<input type="radio" class="radio" name="footericons_enable" value="0"{{ not FI_ENABLE ? ' checked' }}> {{ lang('NO') }}
 				</dd>
 			</dl>
 			<dl>
 				<dt>
-					<label for="fi-shadow-color_{{ loop.index }}">{{ lang('ACP_FI_SHADOW_COLOR') ~ lang('COLON') }}</label><br>
-					<span>{{ lang('ACP_FI_SHADOW_COLOR_EXPLAIN') }}</span>
+					<label for="footericons_position">{{ lang('ACP_FI_POSITION') ~ lang('COLON') }}</label>
 				</dt>
 				<dd>
-					<input id="fi-shadow-color_{{ loop.index }}" class="fi-shadow-color fi-input-color" data-css-var="--fi-shadow-color" type="text" name="fi_shadow_color[]" data-text-shadow value="{% if icon.FI_SHADOW_COLOR %}{{ icon.FI_SHADOW_COLOR }}{% else %}transparent{% endif %}">
+					<select name="footericons_position" id="footericons_position">
+						<option value="0"{{ FI_POSITION eq 0 ? ' selected' }}>{{ lang('ACP_FI_POSITION_PAGE_BODY_AFTER') }}</option>
+						<option value="1"{{ FI_POSITION eq 1 ? ' selected' }}>{{ lang('ACP_FI_POSITION_COPYRIGHT_PREPEND') }}</option>
+						<option value="2"{{ FI_POSITION eq 2 ? ' selected' }}>{{ lang('ACP_FI_POSITION_COPYRIGHT_APPEND') }}</option>
+						<option value="3"{{ FI_POSITION eq 3 ? ' selected' }}>{{ lang('ACP_FI_POSITION_FOOTER_AFTER') }}</option>
+					</select>
 				</dd>
 			</dl>
-			<a href="#main" class="fi-top" title="{{ lang('ACP_FI_TOP') }}">
-				<i class="icon fa-chevron-circle-up fa-fw" aria-hidden="true"></i>
-				<span class="sr-only">{{ lang('ACP_FI_TOP') }}</span>
-			</a>
+			<dl>
+				<dt>
+					<label for="footericons_align">{{ lang('ACP_FI_ALIGN') ~ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<select name="footericons_align" id="footericons_align">
+						<option value="start"{{ FI_ALIGN eq 'start' ? ' selected' }}>{{ lang('ACP_FI_ALIGN_START') }}</option>
+						<option value="center"{{ FI_ALIGN eq 'center' ? ' selected' }}>{{ lang('ACP_FI_ALIGN_CENTER') }}</option>
+						<option value="end"{{ FI_ALIGN eq 'end' ? ' selected' }}>{{ lang('ACP_FI_ALIGN_END') }}</option>
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="footericons_size">{{ lang('ACP_FI_SIZE') ~ lang('COLON') }}</label>
+					<br><span>{{ lang('ACP_FI_SIZE_EXPLAIN') }}</span>
+				</dt>
+				<dd>
+					<input id="footericons_size" name="footericons_size" type="text" value="{{ FI_SIZE ?: '2em' }}" size="20">
+				</dd>
+			</dl>
 		</fieldset>
-		{% endfor %}
+		<p class="submit-buttons">
+			{{ S_FORM_TOKEN }}
+			<input class="button1" type="submit" name="submit" value="{{ lang('SUBMIT') }}">
+		</p>
+	</form>
+
+	<fieldset>
+		<legend>{{ lang('ACP_FI_ICONS_LIST') }}</legend>
+		<table class="table1 zebra-table fi-table">
+			<thead>
+				<tr>
+					<th class="fi-small-cell">{{ lang('ACP_FI_PREVIEW') }}</th>
+					<th>{{ lang('ACP_FI_NAME') }}</th>
+					<th>{{ lang('ACP_FI_URL') }}</th>
+					<th>{{ lang('ACP_FI_DESC') }}</th>
+					<th class="fi-small-cell">{{ lang('ACP_FI_EXTERNAL_LINK') }}</th>
+					<th>{{ lang('ACTION') }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for icon in fi_icons %}
+				<tr class="fi-row-preview">
+					<td>
+						<span class="fi-preview fi-icon-item fi-item-{{ loop.index }}" style="--fi-color: {{ icon.FI_COLOR }}; --fi-color-hover: {{ icon.FI_COLOR_HOVER }}; --fi-bgcolor: {{ icon.FI_BGCOLOR }}; --fi-bgcolor-hover: {{ icon.FI_BGCOLOR_HOVER }};{% if icon.FI_SHADOW_COLOR %} --fi-shadow-color: {{ icon.FI_SHADOW_COLOR }};{% endif %}">
+							<a class="fi-link fa-stack{{ icon.FI_BG eq 0 ? ' fi-nobg' }}" href="{{ icon.FI_URL }}"{% if icon.FI_OPEN %} target="_blank"{% endif %} title="{{ icon.FI_DESC ?: icon.FI_NAME }}{{ icon.FI_OPEN ? ' ' ~ lang('FI_OPEN_NEW') }}">
+								{% if icon.FI_BG neq 0 %}
+								<i class="fi-icon-bg fa {% if icon.FI_BG eq 1 %}fa-circle{% elseif icon.FI_BG eq 2 %}fa-square{% else %}fa-stop{% endif %} fa-stack-2x" aria-hidden="true"></i>
+								{% endif %}
+								<i class="fi-icon fa {{ icon.FI_CODE }} {{ icon.FI_BG neq 0 ? 'fa-stack-1x' : 'fa-stack-2x' }}" aria-hidden="true"></i>
+								<span class="sr-only">{{ icon.FI_NAME }}{{ icon.FI_OPEN ? ' ' ~ lang('FI_OPEN_NEW') }}</span>
+							</a>
+						</span>
+					</td>
+					<td>{{ icon.FI_NAME }}</td>
+					<td>{{ icon.FI_URL }}</td>
+					<td>{{ icon.FI_DESC }}</td>
+					<td>{{ icon.FI_OPEN ? lang('YES') }}</td>
+					<td class="actions">
+						<div class="fi-actions{% if loop.length <= 1 %} fi-disabled{% endif %}">
+							<span class="up-disabled" style="display:none;">{{ ICON_MOVE_UP_DISABLED }}</span>
+							<span class="up"><a href="{{ icon.U_MOVE_UP }}" data-ajax="row_up">{{ ICON_MOVE_UP }}</a></span>
+							<span class="down-disabled" style="display:none;">{{ ICON_MOVE_DOWN_DISABLED }}</span>
+							<span class="down"><a href="{{ icon.U_MOVE_DOWN }}" data-ajax="row_down">{{ ICON_MOVE_DOWN }}</a></span>
+							<a href="{{ icon.U_EDIT }}">{{ ICON_EDIT }}</a>
+							<span class="apply-style-disabled">{{ ICON_STYLE_APPLY_DISABLED }}</span>
+							<span class="apply-style"><a href="{{ icon.U_APPLY_STYLE }}" data-ajax="apply_style">{{ ICON_STYLE_APPLY }}</a></span>
+							<a href="{{ icon.U_DELETE }}" data-ajax="fi_row_delete">{{ ICON_DELETE }}</a>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+				<tr id="fi_no_items"{{ fi_icons|length ? ' hidden' }}><td colspan="6">{{ lang('ACP_NO_ITEMS') }}</td></tr>
+			</tbody>
+		</table>
 	</fieldset>
-
-	<p id="fi-clone-link" class="fi-clone-link nojs-hide">
-		<input id="fi-clone-btn" type="button" class="button2 fi-clone-btn" value="{{ lang('ACP_FI_MORE_LINKS') }}">
-	</p>
-
-	<p class="submit-buttons">
-		{{ S_FORM_TOKEN }}
-		<input class="button1" type="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
-		<input class="button2" type="reset" name="reset" value="{{ lang('RESET') }}">
-	</p>
-</form>
-<script>
-	const defaultLegendLang = "{{ lang('ACP_FI_DEFAULT_TITLE')|e ('js') }}",
-		closeIconsLang = "{{ lang('ACP_FI_ICON_CLOSE')|e ('js') }}",
-		searchIconLang = "{{ lang('ACP_FI_ICON_SEARCH')|e ('js') }}",
-		deleteIconLang = "{{ lang('ACP_FI_DELETE_YES')|e ('js') }}",
-		restoreIconLang = "{{ lang('ACP_FI_DELETE_NO')|e ('js') }}";
-</script>
+	<form method="post" action="{{ U_ACTION }}">
+		<fieldset class="quick">
+			<input type="hidden" name="action" value="add">
+			<input class="button2" name="add" type="submit" value="{{ lang('ACP_FI_ICON_ADD') }}">
+			{{ S_FORM_TOKEN }}
+		</fieldset>
+	</form>
+{% endif %}
+	<script>
+		const noItemLang = "{{ lang('ACP_NO_ITEMS')|e('js') }}",
+			defaultLegendLang = "{{ lang('ACP_FI_DEFAULT_TITLE')|e('js') }}",
+			closeIconsLang = "{{ lang('ACP_FI_ICON_CLOSE')|e('js') }}",
+			searchIconLang = "{{ lang('ACP_FI_ICON_SEARCH')|e('js') }}",
+			iconsJsonPath = "{{ FI_EXT_PATH }}adm/style/icons.min.json";
+	</script>
 {% INCLUDE 'overall_footer.html' %}

@@ -3,7 +3,7 @@
  *
  * Footer Icons extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2023 - cabot
+ * @copyright (c) 2023-2026 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -35,5 +35,9 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	'ACP_FI_TITLE'					=> 'Icônes de pied de page',
 	'ACP_FI_CONF'					=> 'Configuration des icônes',
-	'LOG_FI_MODIFIED'				=> '<strong>Configuration des icônes de pied de page modifiée</strong>',
+	'LOG_FI_ICON_ADDED'				=> '<strong>Icône de pied de page ajoutée</strong><br>» %s',
+	'LOG_FI_ICON_DELETED'			=> '<strong>Icône de pied de page supprimée</strong><br>» %s',
+	'LOG_FI_ICON_UPDATED'			=> '<strong>Icône de pied de page mise à jour</strong><br>» %s',
+	'LOG_FI_SETTINGS_UPDATED'		=> '<strong>Configuration des icônes de pied de page mise à jour</strong>',
+	'LOG_FI_STYLE_APPLIED'			=> '<strong>Styles des icônes de pied de page synchronisés</strong>',
 ]);

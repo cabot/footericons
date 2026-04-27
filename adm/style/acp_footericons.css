@@ -1,22 +1,5 @@
 /* Main preview
 ---------------------------------------------------------------------------- */
-.i-preview {
-	font-size: 1.3em;
-	cursor: help;
-}
-
-.fi-icons-list {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2px;
-	justify-content: var(--fi-align);
-	list-style: none;
-}
-
-.fi-list-item {
-	font-size: 10px;
-}
-
 .fi-link {
 	color: transparent;
 	font-size: var(--fi-size);
@@ -30,13 +13,52 @@
 	color: var(--fi-color-hover);
 }
 
-/* Preview each icon
+/* Table styles
 ---------------------------------------------------------------------------- */
-.fi-row {
+.fi-table th,
+.fi-table td {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.fi-preview {
+	font-size: 2em;
+}
+
+.fi-small-cell {
+	width: 8%;
+}
+
+.fi-actions {
+	font-size: 1.1em;
+	display: inline-flex;
+	gap: 0.75em;
+}
+
+.apply-style-disabled,
+.fi-disabled .apply-style {
+	display: none;
+}
+
+.fi-disabled .apply-style-disabled {
+	display: initial;
+}
+
+.fi-table tbody tr:nth-last-child(2) td.actions .down {
+	display: none;
+}
+
+.fi-table tbody tr:nth-last-child(2) td.actions .down-disabled {
+	display: inline !important;
+}
+
+/* Icon preview
+---------------------------------------------------------------------------- */
+.fi-edit {
 	position: relative;
 }
 
-.fi-row-legend {
+.fi-edit-legend {
 	font-size: 10px;
 	margin-top: 0;
 }
@@ -50,7 +72,7 @@
 	transition: color 0.2s;
 }
 
-.fi-row-legend:hover .fi-icon-bg {
+.fi-edit-legend:hover .fi-icon-bg {
 	color: var(--fi-bgcolor-hover);
 }
 
@@ -60,11 +82,11 @@
 	transition: color 0.2s;
 }
 
-.fi-row-legend:hover .fi-icon {
+.fi-edit-legend:hover .fi-icon {
 	color: var(--fi-color-hover);
 }
 
-.fi-row-name-preview {
+.fi-edit-name-preview {
 	font-size: 12px;
 	margin-left: 1em;
 }
@@ -131,21 +153,19 @@ input.spectrum {
 	background: rgb(14, 106, 152)
 }
 
-.fi-item .fa {
-	font-size: 28px;
-}
-
 .fi-item {
+	--fi-size: 28px;
+	font-size: var(--fi-size);
 	background: rgb(252, 252, 252);
 	border: 1px solid rgb(204, 204, 204);
 	border-radius: 3px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex: 0 0 28px;
+	flex: 0 0 var(--fi-size);
 	padding: 6px;
-	width: 28px;
-	height: 28px;
+	width: var(--fi-size);
+	height: var(--fi-size);
 	margin: 0;
 	transition: background 0.15s;
 }
@@ -195,95 +215,4 @@ input.spectrum {
 
 .rtl .fi-input-preview {
 	margin: 0 5px 0 0;
-}
-
-/*	Delete button
----------------------------------------------------------------------------- */
-.fi-delete-wrap {
-	display: flex;
-	justify-content: flex-end;
-	margin: -0.8em 0 0.4em;
-}
-
-.fi-delete-info {
-	color: #d90707;
-	display: none;
-	flex: 1;
-	font-weight: bold;
-	text-align: center;
-}
-
-.fi-delete-button {
-	background-color: #fff;
-	border: 1px solid var(--fi-delete-button-color);
-	border-radius: 6px;
-	color: var(--fi-delete-button-color);
-	display: none;
-	padding: 2px 6px;
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-	cursor: pointer;
-	margin-left: 1em;
-}
-
-.fi-delete-button i {
-	margin-right: 2px;
-}
-
-.fi-delete-button:hover {
-	color: #fff;
-}
-
-.fi-delete {
-	--fi-delete-button-color: #d90707;
-}
-
-.fi-delete:hover {
-	background-color: var(--fi-delete-button-color);
-}
-
-.fi-restore {
-	--fi-delete-button-color: green;
-}
-
-.fi-restore:hover {
-	background-color: var(--fi-delete-button-color);
-}
-
-.fi-delete-button:focus {
-	outline: none;
-}
-
-.fi-delete-button:focus-visible {
-	outline: 2px solid;
-}
-
-/*	Back to top link
----------------------------------------------------------------------------- */
-.fi-top {
-	float: right;
-	font-size: 1.2em;
-}
-
-.fi-top:hover {
-	text-decoration: none;
-}
-
-.fi-top i {
-	color: rgb(128, 128, 128);
-}
-
-/*	Clone link
----------------------------------------------------------------------------- */
-.fi-clone-link {
-	text-align: right;
-}
-
-.fi-clone-link .fi-clone-btn {
-	padding: 3px 2px;
-}
-
-/*	Hide elements requiring JS if JS is deactivated
----------------------------------------------------------------------------- */
-.nojs .nojs-hide {
-	display: none;
 }
