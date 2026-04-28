@@ -42,7 +42,7 @@ class footericons_service
 	public function move(int $id, string $direction): bool
 	{
 		// Get current order
-		$sql = 'SELECT fi_order FROM ' . $this->footericons_table . ' WHERE fi_id = ' . (int)$id;
+		$sql = 'SELECT fi_order FROM ' . $this->footericons_table . ' WHERE fi_id = ' . (int) $id;
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
@@ -51,7 +51,7 @@ class footericons_service
 			return false;
 		}
 
-		$current_order = (int)$row['fi_order'];
+		$current_order = (int) $row['fi_order'];
 		$switch_order = $direction === 'move_up' ? $current_order - 1 : $current_order + 1;
 
 		// Check limits
@@ -60,7 +60,7 @@ class footericons_service
 		$limits = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		if ($switch_order < (int)$limits['min_order'] || $switch_order > (int)$limits['max_order']) {
+		if ($switch_order < (int) $limits['min_order'] || $switch_order > (int) $limits['max_order']) {
 			return false;
 		}
 
@@ -69,19 +69,19 @@ class footericons_service
 		// Update the other icon
 		$this->db->sql_query(
 			'UPDATE ' . $this->footericons_table . '
-			SET fi_order = ' . $current_order . '
-			WHERE fi_order = ' . $switch_order . '
-			AND fi_id <> ' . (int)$id
+			SET fi_order = ' . (int) $current_order . '
+			WHERE fi_order = ' . (int) $switch_order . '
+			AND fi_id <> ' . (int) $id
 		);
 
-		$moved = (bool)$this->db->sql_affectedrows();
+		$moved = (bool) $this->db->sql_affectedrows();
 
 		if ($moved) {
 			// Update the current icon
 			$this->db->sql_query(
 				'UPDATE ' . $this->footericons_table . '
-				SET fi_order = ' . $switch_order . '
-				WHERE fi_id = ' . (int)$id
+				SET fi_order = ' . (int) $switch_order . '
+				WHERE fi_id = ' . (int) $id
 			);
 		}
 
@@ -114,7 +114,7 @@ class footericons_service
 		$deleted_order = (int) $row['fi_order'];
 
 		$this->db->sql_query('DELETE FROM ' . $this->footericons_table . ' WHERE fi_id = ' . (int) $id);
-		$this->db->sql_query('UPDATE ' . $this->footericons_table . ' SET fi_order = fi_order - 1 WHERE fi_order > ' . $deleted_order);
+		$this->db->sql_query('UPDATE ' . $this->footericons_table . ' SET fi_order = fi_order - 1 WHERE fi_order > ' . (int) $deleted_order);
 
 		$this->db->sql_transaction('commit');
 		return true;

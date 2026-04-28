@@ -73,7 +73,7 @@ class listener implements EventSubscriberInterface
 		$this->ext_path = $this->path_helper->update_web_root_path($ext_rel);
 	}
 
-	public static function getSubscribedEvents()
+	public static function getSubscribedEvents(): array
 	{
 		return [
 			'core.page_header'	=> 'footericons',
@@ -81,7 +81,7 @@ class listener implements EventSubscriberInterface
 		];
 	}
 
-	public function load_language_on_setup($event)
+	public function load_language_on_setup($event): void
 	{
 		$lang_set_ext		= $event['lang_set_ext'];
 		$lang_set_ext[]		= [
@@ -91,7 +91,7 @@ class listener implements EventSubscriberInterface
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
-	public function footericons()
+	public function footericons(): void
 	{
 		$this->template->assign_vars([
 			'FI_ENABLE'						=> (bool) $this->config['footericons_enable'],

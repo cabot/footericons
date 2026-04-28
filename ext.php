@@ -20,7 +20,7 @@ class ext extends \phpbb\extension\base
 	/**
 	 * {@inheritdoc}
 	 */
-	public function is_enableable()
+	public function is_enableable(): bool
 	{
 		$config = $this->container->get('config');
 		$phpbb_ok = $this->version_check($config['version']) && $this->version_check(PHPBB_VERSION);
@@ -36,7 +36,7 @@ class ext extends \phpbb\extension\base
 	 * @param string|int $version The version to check
 	 * @return bool
 	 */
-	protected function version_check($version)
+	protected function version_check($version): bool
 	{
 		return phpbb_version_compare($version, self::PHPBB_MIN_VERSION, '>=');
 	}

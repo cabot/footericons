@@ -112,7 +112,7 @@ class acp_controller
 
 		// Actions
 		$action = $this->request->variable('action', '');
-		$icon_id = (int)$this->request->variable('fi_id', 0);
+		$icon_id = (int) $this->request->variable('fi_id', 0);
 
 		$this->handle_action($action, $icon_id, $form_key);
 
@@ -169,7 +169,7 @@ class acp_controller
 					'FI_CODE'			=> $row['fi_code'],
 					'FI_COLOR'			=> $row['fi_color'],
 					'FI_COLOR_HOVER'	=> $row['fi_color_hover'],
-					'FI_BG'				=> (int)$row['fi_bg'],
+					'FI_BG'				=> (int) $row['fi_bg'],
 					'FI_BGCOLOR'		=> $row['fi_bgcolor'],
 					'FI_BGCOLOR_HOVER'	=> $row['fi_bgcolor_hover'],
 					'FI_SHADOW_COLOR'	=> $row['fi_shadow_color'],
@@ -411,7 +411,7 @@ class acp_controller
 	{
 		// Get selected icon style
 		$sql = 'SELECT fi_color, fi_color_hover, fi_bg, fi_bgcolor, fi_bgcolor_hover, fi_shadow_color
-				FROM ' . $this->footericons_table . ' WHERE fi_id = ' . (int)$icon_id;
+				FROM ' . $this->footericons_table . ' WHERE fi_id = ' . (int) $icon_id;
 		$result = $this->db->sql_query($sql);
 		$style = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
