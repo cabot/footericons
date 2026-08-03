@@ -3,7 +3,7 @@
  *
  * Footer Icons extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2023 - cabot
+ * @copyright (c) 2023-2026 - cabot
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -35,5 +35,9 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	'ACP_FI_TITLE'					=> 'Footer Icons',
 	'ACP_FI_CONF'					=> 'Footer Icons Configuration',
-	'LOG_FI_MODIFIED'				=> '<strong>Footer icons configuration modified</strong>',
+	'LOG_FI_ICON_ADDED'				=> '<strong>Footer icon added</strong><br>» %s',
+	'LOG_FI_ICON_DELETED'			=> '<strong>Footer icon deleted</strong><br>» %s',
+	'LOG_FI_ICON_UPDATED'			=> '<strong>Footer icon updated</strong><br>» %s',
+	'LOG_FI_SETTINGS_UPDATED'		=> '<strong>Footer icons configuration updated</strong>',
+	'LOG_FI_STYLE_APPLIED'			=> '<strong>Footer icons styles synchronized</strong>',
 ]);
