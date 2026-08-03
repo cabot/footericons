@@ -23,14 +23,15 @@
             "role": "Spectrum 2 Developer"
         },
         {
-			"name": "Skouat",
-			"homepage": "https://github.com/Skouat",
-			"role": "Developer"
-		}
+            "name": "Skouat",
+            "homepage": "https://github.com/Skouat",
+            "role": "Developer"
+        }
     ],
     "require": {
         "php": ">=7.2",
-        "composer/installers": "~1.0"
+        "composer/installers": "~1.0",
+        "phpbb/phpbb": ">=3.3.11,<4.0.0@dev"
     },
     "extra": {
         "display-name": "Footer Icons",
